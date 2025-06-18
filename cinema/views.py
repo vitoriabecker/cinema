@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Movie
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, LoginForm, MovieForm, CommentForm
 
@@ -55,34 +55,105 @@ def user_logout(request):
   logout(request)
   return redirect('home')
 
-
+@permission_required('cinema.add_movie', raise_exception=True)
 def add_movie(request):
   template_name = 'add_movie.html'
 
-  if request.method == 'POST':
-    form = MovieForm(request.POST, request.FILES)
+  if request.user.is_authenticated:
+    if request.method == 'POST':
+      form = MovieForm(request.POST, request.FILES)
 
-    if form.is_valid():
-      form.save()
-      return redirect('movie_list')
+      if form.is_valid():
+        form.save()
+        return redirect('movie_list')
 
-  else:
-    form = MovieForm()
+    else:
+      form = MovieForm()
     
-  return render(request, template_name, context={'form':form})
+    return render(request, template_name, context={'form':form})
+  else:
+    return redirect('login')
+
+
+def movie_detail(request, id):
+  template_name = 'movie_detail.html'
+
+  """ tenta pegar o objeto do modelo Movie através do id passado, 
+      caso nao houver objeto, retorna o erro 404 """
+  movie = get_object_or_404(Movie, id=id)
+  comments = movie.comments.all()
+
+  comment_form = CommentForm()
+
+  return render(request, template_name, context={'movie':movie,
+                                                 'comments':comments,
+                                                 'comment_form':comment_form,})
 
 
 def movie_list(request):
-  pass
+  template_name = 'movie_list.html'
+  movies = Movie.objects.all()
+  return render(request, template_name, context={'movies':movies})
 
-def update_movie(request):
-  pass
 
-def delete_movie(request):
-  pass
+@permission_required('cinema.update_movie', raise_exception=True)
+def update_movie(request, id):
+  template_name = 'update_movie.html'
 
-def movie_detail(request):
-  pass
+  if request.user.is_superuser():
+    if request.method == 'POST':
+      movie = get_object_or_404(Movie, id=id)
+      form = MovieForm(request.POST, request.FILES, instance=movie)
 
-def add_comment_to_movie(request):
-  pass
+      if form.is_valid():
+        form.save()
+        return redirect('movie_detail')
+    else:
+      form = MovieForm(instance=movie)
+  
+    return render(request, template_name, context={'form':form})
+  else:
+    return redirect('login')
+
+
+@permission_required('cinema.delete_movie', raise_exception=True)
+def delete_movie(request, id):
+  template_name = 'delete_movie.html'
+
+  if request.user.is_superuser():
+    movie = get_object_or_404(Movie, id=id)
+
+    if request.method == 'POST':
+      movie.delete()
+
+      return redirect('movie_list')
+
+    return render(request, template_name, context='movie':movie)
+    
+  else:
+    return redirect('login')
+
+
+@login_required
+def add_comment_to_movie(request, id):
+  template_name = 'add_comment_to_movie.html'
+
+  movie = get_object_or_404(Movie, id=id)
+
+  if request.method == 'POST':
+    form = CommentForm(request.POST)
+
+    if form.is_valid():
+      new_comment = form.save(commit=False) #Create the Comment object, but don’t save it to the database yet
+      new_comment.movie = movie
+      new_comment.save()
+      return redirect('movie_detail', id=id)
+
+    else:
+      form = CommentForm()
+  else:
+    return render(request, template_name, context={'form':form, 'movie':movie})
+      
+
+
+
