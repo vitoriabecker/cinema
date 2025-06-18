@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, LoginForm, MovieForm, CommentForm
 
-def index(request):
-  return render(request, 'cinema/index.html')
+def home(request):
+  return render(request, 'cinema/home.html')
 
 
 def user_signup(request):
@@ -72,15 +72,13 @@ def add_movie(request):
   return render(request, template_name, context={'form':form})
 
 
-
+def movie_list(request):
+  pass
 
 def update_movie(request):
   pass
 
 def delete_movie(request):
-  pass
-
-def movie_list(request):
   pass
 
 def movie_detail(request):
