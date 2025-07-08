@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, Movie
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, LoginForm, MovieForm, CommentForm
+from .models import Movie
 
 def home(request):
   return render(request, 'cinema/home.html')
@@ -55,24 +56,30 @@ def user_logout(request):
   logout(request)
   return redirect('home')
 
-@permission_required('cinema.add_movie', raise_exception=True)
+
+#@permission_required('cinema.add_movie', raise_exception=True)
 def add_movie(request):
-  template_name = 'add_movie.html'
+  template_name = 'cinema/add_movie.html'
 
-  if request.user.is_authenticated:
-    if request.method == 'POST':
-      form = MovieForm(request.POST, request.FILES)
+  #if not request.user.is_superuser():
+  #  return redirect('login')
 
-      if form.is_valid():
-        form.save()
-        return redirect('movie_list')
+  if request.method == 'POST':
+    form = MovieForm(request.POST, request.FILES)
 
-    else:
-      form = MovieForm()
+    if form.is_valid():
+      movie = form.save(commit=False)
+
+      if 'poster' in request.FILES:
+        movie.poster = request.FILES['poster']
+      
+      movie.save()
+      return redirect('movie_list')
     
-    return render(request, template_name, context={'form':form})
   else:
-    return redirect('login')
+    form = MovieForm()
+  
+  return render(request, template_name, context={'form':form})
 
 
 def movie_detail(request, id):
@@ -96,7 +103,7 @@ def movie_list(request):
   return render(request, template_name, context={'movies':movies})
 
 
-@permission_required('cinema.update_movie', raise_exception=True)
+#@permission_required('cinema.update_movie', raise_exception=True)
 def update_movie(request, id):
   template_name = 'update_movie.html'
 
@@ -116,7 +123,7 @@ def update_movie(request, id):
     return redirect('login')
 
 
-@permission_required('cinema.delete_movie', raise_exception=True)
+#@permission_required('cinema.delete_movie', raise_exception=True)
 def delete_movie(request, id):
   template_name = 'delete_movie.html'
 
@@ -128,15 +135,14 @@ def delete_movie(request, id):
 
       return redirect('movie_list')
 
-    return render(request, template_name, context='movie':movie)
+    return render(request, template_name, context={'movie':movie})
     
   else:
     return redirect('login')
 
 
-@login_required
+#@login_required
 def add_comment_to_movie(request, id):
-  template_name = 'add_comment_to_movie.html'
 
   movie = get_object_or_404(Movie, id=id)
 
@@ -147,12 +153,8 @@ def add_comment_to_movie(request, id):
       new_comment = form.save(commit=False) #Create the Comment object, but don’t save it to the database yet
       new_comment.movie = movie
       new_comment.save()
-      return redirect('movie_detail', id=id)
 
-    else:
-      form = CommentForm()
-  else:
-    return render(request, template_name, context={'form':form, 'movie':movie})
+  return redirect('movie_detail', id=id)
       
 
 

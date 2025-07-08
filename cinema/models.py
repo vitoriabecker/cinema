@@ -1,25 +1,18 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.auth.models import User
 
-
-class User(models.Model):
-  fname = models.CharField(max_length=40)
-  lname = models.CharField(max_length=120)
-  email = models.EmailField(max_length=50)
-  password = models.CharField(max_length=10)
-
-  def __str__(self):
-    return self.fname
-  
+# eu retirei o model User, pq eu estou usando o User do django
+# comparar isso com meu outro projeto e ver como aplicar o User do django nos forms
 
 class Movie(models.Model):
-  title = models.CharField
+  title = models.CharField(max_length=140, blank=True, null=True)
   year = models.CharField(max_length=4, blank=True, null=True)
-  length = models.CharField
+  length = models.CharField(max_length=4, blank=True, null=True)
   genre = models.CharField (max_length=40)
   director = models.CharField(max_length=130)
-  synopsis = models.TextField
+  synopsis = models.TextField(max_length=4, blank=True, null=True)
   poster = models.ImageField(upload_to='media/posters', null=True)
 
   def __str__(self):
