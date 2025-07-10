@@ -98,7 +98,7 @@ def movie_detail(request, id):
 
 
 def movie_list(request):
-  template_name = 'movie_list.html'
+  template_name = 'cinema/movie_list.html'
   movies = Movie.objects.all()
   return render(request, template_name, context={'movies':movies})
 
