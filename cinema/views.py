@@ -83,7 +83,7 @@ def add_movie(request):
 
 
 def movie_detail(request, id):
-  template_name = 'movie_detail.html'
+  template_name = 'cinema/movie_detail.html'
 
   """ tenta pegar o objeto do modelo Movie através do id passado, 
       caso nao houver objeto, retorna o erro 404 """
