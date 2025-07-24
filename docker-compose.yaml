@@ -18,6 +18,7 @@ services:
       - ./nginx/rtmp.conf:/etc/nginx/templates/rtmp.conf.template
       - ./nginx/http.conf:/etc/nginx/templates/http.conf.template
       - ./nginx/index.html:/usr/share/nginx/html/index.html
+      - hls-data:/tmp/hls 
 
   ffmpeg:
     image: ffmpeg-i
@@ -28,3 +29,8 @@ services:
     env_file: .env
     depends_on:
       - nginx
+    volumes:
+      - hls-data:/tmp/hls
+
+volumes:
+  hls-data:
