@@ -15,11 +15,17 @@ class Movie(models.Model):
   synopsis = models.TextField(max_length=4, blank=True, null=True)
   poster = models.ImageField(upload_to='media/posters', null=True)
 
+  # video_file = 
+  # start_time = 
+
   def __str__(self):
     return self.title
   
   def get_absolute_url(self):
     return reverse('movie_detail', kwargs={'pk':self.pk})
+  
+  # def is_live(self):
+  
 
 
 class Comment(models.Model):

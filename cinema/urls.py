@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
   path('', views.home, name='home'),
+  
+  path('live/', views.live_stream, name='live_stream'),
 
   path('movie/', views.movie_list, name='movie_list'),
   path('movie/add', views.add_movie, name='add_movie'),

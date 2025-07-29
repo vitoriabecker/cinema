@@ -8,6 +8,11 @@ def home(request):
   return render(request, 'cinema/home.html')
 
 
+def live_stream(request):
+  return render(request, 'cinema/live_stream.html')
+      
+
+
 def user_signup(request):
   template_name = 'signup.html'
 
@@ -155,7 +160,9 @@ def add_comment_to_movie(request, id):
       new_comment.save()
 
   return redirect('movie_detail', id=id)
-      
+
+
+
 
 
 
