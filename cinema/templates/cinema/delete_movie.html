@@ -1,0 +1,15 @@
+{% extends 'cinema/home.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="deletemovie-container">
+    <form method="post">
+    {% csrf_token %}
+    do you want to delete this movie?
+    <input type="submit" value="Yes">
+    <a href="{% url 'movie_list' %}">Cancel</a>
+  </form>
+</section>
+
+{% endblock content %}

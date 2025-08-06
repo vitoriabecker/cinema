@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
+import datetime
 
 # eu retirei o model User, pq eu estou usando o User do django
 # comparar isso com meu outro projeto e ver como aplicar o User do django nos forms
@@ -15,8 +16,10 @@ class Movie(models.Model):
   synopsis = models.TextField(max_length=4, blank=True, null=True)
   poster = models.ImageField(upload_to='media/posters', null=True)
 
-  # video_file = 
-  # start_time = 
+  #test
+  video_url = models.URLField(null=True, blank=True)
+  start_time = models.DateTimeField(default=timezone.now())
+
 
   def __str__(self):
     return self.title
@@ -24,12 +27,27 @@ class Movie(models.Model):
   def get_absolute_url(self):
     return reverse('movie_detail', kwargs={'pk':self.pk})
   
-  # def is_live(self):
+  #test
+  def is_live(self):
+    now = timezone.now()
+    return self.start_time <= now <= self.end_time
+  
+  def end_time(self):
+    return self.start_time + self.duration()
+  
+  def duration(self):
+    return timezone.timedelta(minutes=120)
   
 
 
 class Comment(models.Model):
   user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, related_name='comments', on_delete=models.CASCADE)
-  text = models.TextField
-  created_date = models.TimeField(default=timezone.now())
+  text = models.TextField(default='write a comment')
+  created_date = models.DateTimeField(auto_now_add=True)
+
+  class Meta:
+    ordering = ['created_date']
+
+  def __str__(self):
+    return 'Comment {} by {}'.format(self.text, self.user)

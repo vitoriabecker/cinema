@@ -1,0 +1,19 @@
+{% extends 'cinema/home.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="moviecomment-container">
+  <div class="card-body">
+
+    <h3>leave a comment</h3>
+    <form method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <button type="submit">submit comment</button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock content %}

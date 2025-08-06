@@ -12,8 +12,42 @@
   
   <p>movie name etc</p>
 
-  <!-- depois, isso vai vir de um media file, nao static, pq o user q vai criar e upar o video -->
-  <video controls width="250"><source src="/cinema/static/videos/2023-06-06 22-39-03.mp4" type="video/mp4"/></video>
+  <!-- depois, isso vai vir de um media file, nao static, pq o user q vai criar e upar o video 
+  <video controls width="250"><source src="/cinema/static/videos/2023-06-06 22-39-03.mp4" type="video/mp4"/></video> -->
+  
+  
+  <video width="800" controls autoplay>
+    <source src="{% static 'videos/vvideo.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <div>
+    {{ movie.title }}
+    {{ movie.year }}
+    {{ movie.length }}
+  </div>
+
+  <div class="update-movie">
+    <a href="{% url 'update_movie' movie.id %}">Edit movie</a>
+  </div>
+
+  <div class="delete-movie">
+    <a href="{% url 'delete_movie' movie.id %}">delete movie</a>
+  </div>
+
+  <div class="movie-comment">
+    <a href="{% url 'movie_comment' movie.id %}">comment</a>
+  </div>
+
+  <h2>{{ comments.count }} comments</h2>
+  {% for comment in comments %}
+    <p>
+    {{ comment.user }}
+    {{ comment.created_date }}
+    </p>
+
+    {{ comment.text | linebreaks }}
+  {% endfor %}
 
 </body>
 </html>

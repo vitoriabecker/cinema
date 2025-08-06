@@ -26,7 +26,7 @@ class MovieForm(forms.ModelForm):
       'synopsis': forms.Textarea(attrs={'class': 'form-control'}),
     }
     
-class CommentForm(forms.Form):
+class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
-    fields = ('text')
+    fields = ['text',]

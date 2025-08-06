@@ -3,14 +3,28 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import SignUpForm, LoginForm, MovieForm, CommentForm
 from .models import Movie
+from django.utils import timezone
+
 
 def home(request):
   return render(request, 'cinema/home.html')
 
 
-def live_stream(request):
-  return render(request, 'cinema/live_stream.html')
-      
+
+#test
+'''
+def live_stream(request, id):
+  movie = get_object_or_404(Movie, id=id)
+  now = timezone.now()
+
+  if movie.start_time > now:
+    return render(request, 'cinema/home.html', {'movie':movie})
+  
+  offset = int((now - movie.start_time).total_seconds())
+  print('offset in seconds', offset)
+
+  return render(request, 'cinema/movie_detail.html', {'movie':movie, 'offset':offset})
+'''
 
 
 def user_signup(request):
@@ -110,46 +124,50 @@ def movie_list(request):
 
 #@permission_required('cinema.update_movie', raise_exception=True)
 def update_movie(request, id):
-  template_name = 'update_movie.html'
+  template_name = 'cinema/update_movie.html'
 
-  if request.user.is_superuser():
-    if request.method == 'POST':
-      movie = get_object_or_404(Movie, id=id)
-      form = MovieForm(request.POST, request.FILES, instance=movie)
+  movie = get_object_or_404(Movie, id=id)
 
-      if form.is_valid():
-        form.save()
-        return redirect('movie_detail')
-    else:
-      form = MovieForm(instance=movie)
-  
-    return render(request, template_name, context={'form':form})
+  #if not request.user.is_authenticated or not request.user.is_superuser:
+  #  return redirect('login')
+
+  if request.method == 'POST':
+    form = MovieForm(request.POST, request.FILES, instance=movie)
+
+    if form.is_valid():
+      form.save()
+      return redirect('movie_list')
   else:
-    return redirect('login')
+    form = MovieForm(instance=movie)
+  
+  return render(request, template_name, context={'form':form})
 
 
 #@permission_required('cinema.delete_movie', raise_exception=True)
 def delete_movie(request, id):
-  template_name = 'delete_movie.html'
+  template_name = 'cinema/delete_movie.html'
 
-  if request.user.is_superuser():
-    movie = get_object_or_404(Movie, id=id)
+  #if not request.user.is_authenticated or not request.user.is_superuser():
+  #  return redirect('login')
+  
+  movie = get_object_or_404(Movie, id=id)
 
-    if request.method == 'POST':
-      movie.delete()
+  if request.method == 'POST':
+    movie.delete()
 
-      return redirect('movie_list')
+    return redirect('movie_list')
 
-    return render(request, template_name, context={'movie':movie})
+  return render(request, template_name, context={'movie':movie})
     
-  else:
-    return redirect('login')
 
 
 #@login_required
 def add_comment_to_movie(request, id):
+  template_name = 'cinema/movie_comment.html'
 
   movie = get_object_or_404(Movie, id=id)
+
+  new_comment = None
 
   if request.method == 'POST':
     form = CommentForm(request.POST)
@@ -157,9 +175,15 @@ def add_comment_to_movie(request, id):
     if form.is_valid():
       new_comment = form.save(commit=False) #Create the Comment object, but don’t save it to the database yet
       new_comment.movie = movie
+      new_comment.user = request.user
       new_comment.save()
+      return redirect('movie_detail', id=id)
 
-  return redirect('movie_detail', id=id)
+  else:
+    form = CommentForm()
+  return render(request, template_name, context={'movie':movie,
+                                                 'new_comment':new_comment,
+                                                 'form':form})
 
 
 
