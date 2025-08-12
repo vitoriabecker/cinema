@@ -1,12 +1,11 @@
 from django import forms
-from .models import User, Movie, Comment
+from .models import Movie, Comment, Rating
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 
 class SignUpForm(UserCreationForm):
   class Meta: 
-    fields = ('fname','lname','email','password')
-    labels = {'fname':'Primeiro nome', 'lname':'Sobrenome', 'email':'E-mail',
-              'password':'Senha'} 
+    fields = ('name','email','password')
+    labels = {'name':'Nome', 'email':'E-mail', 'password':'Senha'} 
 
 class LoginForm(AuthenticationForm):
   username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True}))
@@ -30,3 +29,8 @@ class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
     fields = ['text',]
+
+class RatingForm(forms.ModelForm):
+  class Meta:
+    model = Rating
+    fields = ['rating',]

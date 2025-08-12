@@ -19,7 +19,7 @@
 
         <div class="updatemovie-button">
           <input type="submit" value="update movie">
-          <a href="{% url 'movie_list' %}">cancel</a>
+          <a href="{% url 'movie_detail' movie.id %}">cancel</a>
         </div>
 
       </form>

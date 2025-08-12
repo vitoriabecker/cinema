@@ -8,8 +8,8 @@
 
     <h3>leave a comment</h3>
     <form method="post">
-      {{ form.as_p }}
       {% csrf_token %}
+      {{ form.as_p }}
       <button type="submit">submit comment</button>
     </form>
 

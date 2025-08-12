@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sign in</title>
+</head>
+<body>
+  
+  <!-- na realidade, eu vou usar um block content aqui, mas enfim, faço isso depois -->
+
+  <form action="{% url 'login' %}" method="post">
+
+    <h3>enter your user to continue!!!</h3>
+
+    {% csrf_token %}
+    {{ form.username.label_tag }}
+    {{ form.username }}
+
+    {{ form.password.label_tag }}
+    {{ form.password }}
+
+    <input type="submit" value="login">
+
+  </form>
+  
+  <p>dont have an account? <a href="{% url 'signup' %}">register</a></p>
+
+  {% if messages %}
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  {% endif %}
+
+</body>
+</html>
