@@ -101,12 +101,16 @@ def movie_detail(request, id):
   """ tenta pegar o objeto do modelo Movie através do id passado, 
       caso nao houver objeto, retorna o erro 404 """
   movie = get_object_or_404(Movie, id=id)
+  user_rating = Rating.objects.filter(rating=0).order_by("?").first()
   comments = movie.comments.all()
 
+  rating_form = RatingForm()
   comment_form = CommentForm()
 
   return render(request, template_name, context={'movie':movie,
                                                  'comments':comments,
+                                                 'user_rating':user_rating,
+                                                 'rating_form': rating_form,
                                                  'comment_form':comment_form,})
 
 
@@ -180,18 +184,16 @@ def add_comment_to_movie(request, id):
                                                  'form':form})
 
 
-@login_required
 def rate_movie(request, id):
   template_name = 'movie_detail.html'
 
   movie = get_object_or_404(Movie, id=id)
-  user_rating = Rating.objects.filter(user=request.user, movie=movie).first()
 
   if request.method == 'POST':
     form = RatingForm(request.POST, instance=user_rating)
 
     if form.is_valid():
-      user_rating = form.save(commit=False) # cria o objeto rating, mas não salva ainda não salva no DB. 
+      user_rating = form.save(commit=False) # cria o objeto rating, mas ainda não salva no DB. 
                                             # é preciso fazer isso pq o objeto depende de outros campos, como movie e user
                                             # então eu adiciono eles manualmente, e ai sim eu salvo o objeto no DB.
       user_rating.movie = movie

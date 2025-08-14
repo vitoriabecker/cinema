@@ -6,6 +6,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>movie detail</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script src="{% static 'main.js' %}" defer></script>
+
 </head>
 
 <body>
@@ -21,6 +26,9 @@
     Your browser does not support the video tag.
   </video>
   
+
+
+
   <div>
     {{ movie.title }}
     {{ movie.year }}
@@ -35,6 +43,22 @@
     <a href="{% url 'delete_movie' movie.id %}">delete movie</a>
   </div>
 
+  
+  <!-- rating form -->
+
+  <form class="rating-stars" method="post">
+    {% csrf_token %}
+    <button type="submit" class="fa fa-star my-btn checked" id="first"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="second"></button>
+    <button type="submit" class="fa fa-star my-btn checked" id="third"></button>
+    <button type="submit" class="fa fa-star my-btn" id="fourth"></button>
+    <button type="submit" class="fa fa-star my-btn" id="fifth"></button>
+  </form>
+
+
+
+
+  <!-- o form de comment precisa estar aqui, nao em uma template separada -->
   <div class="movie-comment">
     <a href="{% url 'movie_comment' movie.id %}">comment</a>
   </div>
