@@ -8,7 +8,7 @@
     {% csrf_token %}
     do you want to delete this movie?
     <input type="submit" value="Yes">
-    <a href="{% url 'movie_list' %}">Cancel</a>
+    <a href="{% url 'movie_detail' movie.id %}">Cancel</a>
   </form>
 </section>
 

@@ -14,6 +14,7 @@ urlpatterns = [
   path('movie/<int:id>/update', views.update_movie, name='update_movie'),
   path('movie/<int:id>/delete', views.delete_movie, name='delete_movie'),
   path('movie/<int:id>/comment', views.add_comment_to_movie, name='movie_comment'),
+  path('movie/<int:id>/rate', views.rate_movie, name='movie_rate'),
 
   path('signup/', views.user_signup, name='signup'),
   path('login/', views.user_login, name='login'),

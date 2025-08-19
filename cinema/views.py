@@ -4,7 +4,7 @@ from .forms import MovieForm, CommentForm, RatingForm
 from .models import Movie, Rating
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def home(request):
@@ -65,17 +65,15 @@ def user_login(request):
   return render(request, template_name, context={'form':form})
 
 
+@login_required #ta certo isso? ou coloco apenas na template?
 def user_logout(request):
   logout(request)
   return redirect('home')
 
 
-#@permission_required('cinema.add_movie', raise_exception=True)
+@user_passes_test(lambda u: u.is_superuser) # redireciono para login com uma mensagme ou deixo como page not found?
 def add_movie(request):
   template_name = 'cinema/add_movie.html'
-
-  #if not request.user.is_superuser():
-  #  return redirect('login')
 
   if request.method == 'POST':
     form = MovieForm(request.POST, request.FILES)
@@ -88,7 +86,6 @@ def add_movie(request):
       
       movie.save()
       return redirect('movie_list')
-    
   else:
     form = MovieForm()
   
@@ -97,37 +94,36 @@ def add_movie(request):
 
 def movie_detail(request, id):
   template_name = 'cinema/movie_detail.html'
-
-  """ tenta pegar o objeto do modelo Movie através do id passado, 
-      caso nao houver objeto, retorna o erro 404 """
   movie = get_object_or_404(Movie, id=id)
-  user_rating = Rating.objects.filter(rating=0).order_by("?").first()
-  comments = movie.comments.all()
 
-  rating_form = RatingForm()
+  user_rating = None
+
+  if request.user.is_authenticated:
+    user_rating = Rating.objects.filter(movie=movie, user=request.user).first()
+
+  comments = movie.comments.all()
   comment_form = CommentForm()
+  rating_form = RatingForm()
 
   return render(request, template_name, context={'movie':movie,
                                                  'comments':comments,
+                                                 'comment_form':comment_form,
                                                  'user_rating':user_rating,
-                                                 'rating_form': rating_form,
-                                                 'comment_form':comment_form,})
+                                                 'rating_form': rating_form,})
 
 
 def movie_list(request):
   template_name = 'cinema/movie_list.html'
+
   movies = Movie.objects.all()
   return render(request, template_name, context={'movies':movies})
 
 
-#@permission_required('cinema.update_movie', raise_exception=True)
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def update_movie(request, id):
   template_name = 'cinema/update_movie.html'
-
+  
   movie = get_object_or_404(Movie, id=id)
-
-  #if not request.user.is_authenticated or not request.user.is_superuser:
-  #  return redirect('login')
 
   if request.method == 'POST':
     form = MovieForm(request.POST, request.FILES, instance=movie)
@@ -141,72 +137,60 @@ def update_movie(request, id):
   return render(request, template_name, context={'form':form, 'movie':movie})
 
 
-#@permission_required('cinema.delete_movie', raise_exception=True)
+@user_passes_test(lambda u: u.is_superuser, login_url='login')
 def delete_movie(request, id):
   template_name = 'cinema/delete_movie.html'
-
-  #if not request.user.is_authenticated or not request.user.is_superuser():
-  #  return redirect('login')
   
   movie = get_object_or_404(Movie, id=id)
 
   if request.method == 'POST':
     movie.delete()
 
-    return redirect('movie_list')
+    return redirect('movie_detail', id=id)
 
   return render(request, template_name, context={'movie':movie})
     
 
-#@login_required
+@login_required
 def add_comment_to_movie(request, id):
-  template_name = 'cinema/movie_comment.html'
-
   movie = get_object_or_404(Movie, id=id)
 
-  new_comment = None
-
   if request.method == 'POST':
-    form = CommentForm(request.POST)
+    print('fon')
+    comment_form = CommentForm(request.POST)
 
-    if form.is_valid():
-      new_comment = form.save(commit=False) #Create the Comment object, but don’t save it to the database yet
+    if comment_form.is_valid():
+      new_comment = comment_form.save(commit=False)
       new_comment.movie = movie
       new_comment.user = request.user 
       new_comment.save()
       return redirect('movie_detail', id=id)
-
-  else:
-    form = CommentForm()
-
-  return render(request, template_name, context={'movie':movie,
-                                                 'new_comment':new_comment,
-                                                 'form':form})
+    else:
+      return redirect('movie_list')
+  return redirect('movie_detail', id=id)
 
 
+@login_required
 def rate_movie(request, id):
-  template_name = 'movie_detail.html'
+  template_name = 'cinema/movie_detail.html'
 
   movie = get_object_or_404(Movie, id=id)
 
   if request.method == 'POST':
-    form = RatingForm(request.POST, instance=user_rating)
+      rating = request.POST.get('rating')
 
-    if form.is_valid():
-      user_rating = form.save(commit=False) # cria o objeto rating, mas ainda não salva no DB. 
-                                            # é preciso fazer isso pq o objeto depende de outros campos, como movie e user
-                                            # então eu adiciono eles manualmente, e ai sim eu salvo o objeto no DB.
-      user_rating.movie = movie
-      user_rating.user = request.user
-      user_rating.save()
-      return redirect('movie_detail', id=id)
-    
-  else:
-    form = RatingForm(instance=user_rating)
-  
-  return render(request, template_name, context={'movie':movie,
-                                                 'user_rating':user_rating, 
-                                                 'form':form})
+      existing_rating = Rating.objects.filter(movie=movie, user=request.user).first()
+
+      if existing_rating:
+        existing_rating.rating = rating
+        existing_rating.save()
+      else:
+        new_rating = Rating(rating=rating, movie=movie, user=request.user)
+        new_rating.save()
+
+      return redirect('movie_detail', id=id)   
+   
+  return render(request, template_name, context={'movie':movie})
 
 
 

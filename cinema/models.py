@@ -57,5 +57,10 @@ class Rating(models.Model):
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
   rating = models.FloatField(default=0)
 
+  class Meta:
+    constraints = [
+        models.UniqueConstraint(fields=['user', 'movie'], name='unique_user_movie')
+    ]
+    
   def __str__(self):
     return '{}: {}'.format(self.movie.title, self.rating)
