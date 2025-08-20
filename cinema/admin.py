@@ -11,5 +11,5 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-  list_display = ['user', 'movie', 'rating']
+  list_display = ['user', 'movie', 'score']
 

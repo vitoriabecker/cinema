@@ -65,13 +65,13 @@ def user_login(request):
   return render(request, template_name, context={'form':form})
 
 
-@login_required #ta certo isso? ou coloco apenas na template?
+@login_required
 def user_logout(request):
   logout(request)
   return redirect('home')
 
 
-@user_passes_test(lambda u: u.is_superuser) # redireciono para login com uma mensagme ou deixo como page not found?
+@user_passes_test(lambda u: u.is_superuser)
 def add_movie(request):
   template_name = 'cinema/add_movie.html'
 
@@ -96,10 +96,7 @@ def movie_detail(request, id):
   template_name = 'cinema/movie_detail.html'
   movie = get_object_or_404(Movie, id=id)
 
-  user_rating = None
-
-  if request.user.is_authenticated:
-    user_rating = Rating.objects.filter(movie=movie, user=request.user).first()
+  user_rating = Rating.objects.filter(movie=movie, user=request.user).first()
 
   comments = movie.comments.all()
   comment_form = CommentForm()
@@ -177,15 +174,15 @@ def rate_movie(request, id):
   movie = get_object_or_404(Movie, id=id)
 
   if request.method == 'POST':
-      rating = request.POST.get('rating')
+      score = request.POST.get('score')
 
       existing_rating = Rating.objects.filter(movie=movie, user=request.user).first()
 
       if existing_rating:
-        existing_rating.rating = rating
+        existing_rating.score = score
         existing_rating.save()
       else:
-        new_rating = Rating(rating=rating, movie=movie, user=request.user)
+        new_rating = Rating(score=score, movie=movie, user=request.user)
         new_rating.save()
 
       return redirect('movie_detail', id=id)   

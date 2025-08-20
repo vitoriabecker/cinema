@@ -55,7 +55,7 @@ class Comment(models.Model):
 class Rating(models.Model):
   user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-  rating = models.FloatField(default=0)
+  score = models.FloatField(default=0)
 
   class Meta:
     constraints = [
@@ -63,4 +63,4 @@ class Rating(models.Model):
     ]
     
   def __str__(self):
-    return '{}: {}'.format(self.movie.title, self.rating)
+    return '{}: {}'.format(self.movie.title, self.score)
