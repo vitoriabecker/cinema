@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .forms import MovieForm, CommentForm, RatingForm
-from .models import Movie, Rating
+from .models import Movie, Rating, Profile
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -35,7 +35,9 @@ def user_signup(request):
     form = UserCreationForm(request.POST)
 
     if form.is_valid():
-      form.save()
+      user = form.save()
+      Profile(user=user).save()
+      login(request, user)
       return redirect('home')
     
   else:
@@ -92,17 +94,38 @@ def add_movie(request):
   return render(request, template_name, context={'form':form})
 
 
+def user_profile(request):
+  profile = get_object_or_404(Profile, user=request.user)
+  saved_movies = profile.saved_movies.all()
+
+  return render(request, 'cinema/profile.html', context={'saved_movies':saved_movies})
+
+
+def save_movie(request, id):
+  movie = get_object_or_404(Movie, id=id)
+  profile = get_object_or_404(Profile, user=request.user)
+
+  if movie in profile.saved_movies.all():
+    profile.saved_movies.remove(movie)
+  else:
+    profile.saved_movies.add(movie)
+  
+  return redirect('movie_detail', id=id)
+
+
 def movie_detail(request, id):
   template_name = 'cinema/movie_detail.html'
+  profile = get_object_or_404(Profile, user=request.user.id)
   movie = get_object_or_404(Movie, id=id)
 
-  user_rating = Rating.objects.filter(movie=movie, user=request.user).first()
+  user_rating = Rating.objects.filter(movie=movie, user=request.user.id).first()
 
   comments = movie.comments.all()
   comment_form = CommentForm()
   rating_form = RatingForm()
 
-  return render(request, template_name, context={'movie':movie,
+  return render(request, template_name, context={'profile':profile,
+                                                 'movie':movie,
                                                  'comments':comments,
                                                  'comment_form':comment_form,
                                                  'user_rating':user_rating,

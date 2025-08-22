@@ -18,13 +18,14 @@
     <p>movie name etc</p>
 
     <!-- depois, isso vai vir de um media file, nao static, pq o user q vai criar e upar o video 
-    <video controls width="250"><source src="/cinema/static/videos/2023-06-06 22-39-03.mp4" type="video/mp4"/></video> -->
+    <video controls width="250"><source src="/cinema/static/videos/2023-06-06 22-39-03.mp4" type="video/mp4"/></video> 
     
     <video width="800" controls autoplay>
       <source src="{% static 'videos/vvideo.mp4' %}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-  
+    -->
+    
     <div>
       {{ movie.title }}
       {{ movie.year }}
@@ -48,6 +49,14 @@
       <button type="submit" class="fa fa-star my-btn" id="fourth" name="score" value="4"></button>
       <button type="submit" class="fa fa-star my-btn" id="fifth" name="score" value="5"></button>
     </form> 
+
+
+    <!-- save movie -->
+    {% if movie in profile.saved_movies.all %}
+      <a href="{% url 'save_movie' movie.id %}">unsave</a>
+    {% else %}
+      <a href="{% url 'save_movie' movie.id %}">save</a>
+    {% endif %}
 
     <div class="moviecomment">
       <div class="moviecomment-container">

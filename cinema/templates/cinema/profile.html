@@ -1,0 +1,14 @@
+{% extends 'cinema/home.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3>user profile</h3>
+
+<div class="saved-movies">
+  {% for movie in saved_movies %}
+    {{ movie.title }}
+  {% endfor %}
+</div>
+
+{% endblock content %}

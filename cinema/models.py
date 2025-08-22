@@ -2,10 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
-import datetime
-
-# eu retirei o model User, pq eu estou usando o User do django
-# comparar isso com meu outro projeto e ver como aplicar o User do django nos forms
 
 class Movie(models.Model):
   title = models.CharField(max_length=140, blank=True, null=True)
@@ -39,6 +35,14 @@ class Movie(models.Model):
     return timezone.timedelta(minutes=120)
   
 
+class Profile(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  saved_movies = models.ManyToManyField(Movie, blank=True, related_name='saved_by')
+
+  def __str__(self):
+    return self.user.username
+  
+
 class Comment(models.Model):
   user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, related_name='comments', on_delete=models.CASCADE)
@@ -64,3 +68,4 @@ class Rating(models.Model):
     
   def __str__(self):
     return '{}: {}'.format(self.movie.title, self.score)
+  
