@@ -7,9 +7,16 @@
 
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <!-- nao tenho view nenhuma enviando o form pra ca, como faço? 
-       acho que posso só adicionar a view profile, bem tranquilo -->
+  <!-- na realidade, eu nao preciso disso aqui, preciso apenas de um update profile
+   quando criamos um perfil, essas informações devem vir do signup, e então serem apenas EXIBIDAS
+   nessa template. E então, aqui, precisa haver um botão para update_profile, que ai sim eu passo
+   o form para atualizar. -->
 
+  {% for field in form %}
+   {{ form.as_p }}
+  {% endfor %}
+
+  <button type="submit">salvar perfil</button>
 
 </form>
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .forms import MovieForm, CommentForm, RatingForm
+from .forms import MovieForm, ProfileForm, CommentForm, RatingForm
 from .models import Movie, Rating, Profile
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
@@ -97,8 +97,10 @@ def add_movie(request):
 def user_profile(request):
   profile = get_object_or_404(Profile, user=request.user)
   saved_movies = profile.saved_movies.all()
+  profile_form = ProfileForm()
 
-  return render(request, 'cinema/profile.html', context={'saved_movies':saved_movies})
+  return render(request, 'cinema/profile.html', context={'saved_movies':saved_movies, 
+                                                         'profile_form':profile_form})
 
 
 def save_movie(request, id):
