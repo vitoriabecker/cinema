@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import Movie, Profile, Comment, Rating
 
 admin.site.register(Movie)
-
 admin.site.register(Profile)
 
 @admin.register(Comment)

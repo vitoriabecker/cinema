@@ -9,7 +9,7 @@ class Movie(models.Model):
   length = models.CharField(max_length=4, blank=True, null=True)
   genre = models.CharField (max_length=40)
   director = models.CharField(max_length=130)
-  synopsis = models.TextField(max_length=4, blank=True, null=True)
+  synopsis = models.TextField(max_length=255, blank=True, null=True)
   poster = models.ImageField(upload_to='media/posters', null=True)
 
   #test
@@ -37,6 +37,8 @@ class Movie(models.Model):
 
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
+  avatar = models.ImageField(upload_to='media/avatar', null=True)
+  bio = models.TextField(max_length=255, blank=True, null=True)
   saved_movies = models.ManyToManyField(Movie, blank=True, related_name='saved_by')
 
   def __str__(self):

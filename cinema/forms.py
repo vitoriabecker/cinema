@@ -1,20 +1,29 @@
 from django import forms
-from .models import Movie, Comment, Rating
+from .models import Movie, Profile, Comment, Rating
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+
 
 class SignUpForm(UserCreationForm):
   class Meta: 
-    fields = ('name','email','password')
+    fields = ['name','email','password']
     labels = {'name':'Nome', 'email':'E-mail', 'password':'Senha'} 
+
 
 class LoginForm(AuthenticationForm):
   username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True}))
   password = forms.CharField(label= 'Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password'}))
 
+
+class ProfileForm(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ['user', 'avatar', 'bio', 'saved_movies',]
+
+
 class MovieForm(forms.ModelForm):
   class Meta:
     model = Movie
-    fields = ('title','year','length','genre','director','synopsis','poster')
+    fields = ['title','year','length','genre','director','synopsis','poster',]
     
     widgets = {
       'title': forms.TextInput(attrs={'class': 'form-control'}),

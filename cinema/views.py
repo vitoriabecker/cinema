@@ -93,7 +93,7 @@ def add_movie(request):
   
   return render(request, template_name, context={'form':form})
 
-
+@login_required
 def user_profile(request):
   profile = get_object_or_404(Profile, user=request.user)
   saved_movies = profile.saved_movies.all()

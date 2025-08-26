@@ -5,6 +5,14 @@
 
 <h3>user profile</h3>
 
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <!-- nao tenho view nenhuma enviando o form pra ca, como faço? 
+       acho que posso só adicionar a view profile, bem tranquilo -->
+
+
+</form>
+
 <div class="saved-movies">
   {% for movie in saved_movies %}
     {{ movie.title }}
