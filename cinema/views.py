@@ -1,31 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
-from .forms import MovieForm, ProfileForm, CommentForm, RatingForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from .forms import MovieForm, UpdateProfileForm, CommentForm, RatingForm
 from .models import Movie, Rating, Profile
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def home(request):
   return render(request, 'cinema/home.html')
-
-
-
-#test
-'''
-def live_stream(request, id):
-  movie = get_object_or_404(Movie, id=id)
-  now = timezone.now()
-
-  if movie.start_time > now:
-    return render(request, 'cinema/home.html', {'movie':movie})
-  
-  offset = int((now - movie.start_time).total_seconds())
-  print('offset in seconds', offset)
-
-  return render(request, 'cinema/movie_detail.html', {'movie':movie, 'offset':offset})
-'''
 
 
 def user_signup(request):
@@ -73,6 +56,46 @@ def user_logout(request):
   return redirect('home')
 
 
+@login_required
+def user_profile(request):
+  template_name = 'cinema/profile.html'
+  
+  profile = get_object_or_404(Profile, user=request.user)
+  saved_movies = profile.saved_movies.all()
+
+  if request.method == 'POST':
+    profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+    if profile_form.is_valid():
+      profile_form.save()
+      return redirect('user_profile')
+  else:
+    profile_form = UpdateProfileForm(instance=request.user.profile)
+  
+  return render(request, template_name, context={'profile':profile, 'saved_movies':saved_movies, 'profile_form':profile_form})
+
+
+@login_required
+def change_password(request):
+  template_name = 'registration/change_password.html'
+
+  if request.method == 'POST':
+    form = PasswordChangeForm(request.user, request.POST)
+
+    if form.is_valid():
+      user = form.save()
+      update_session_auth_hash(request, user)
+      messages.success(request, 'Your password was successfully updated!')
+      return redirect('user_profile')
+    else:
+      messages.error(request, 'Please correct the error.')
+
+  else:
+    form = PasswordChangeForm(request.user)
+  
+  return render(request, template_name, context={'form':form})
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def add_movie(request):
   template_name = 'cinema/add_movie.html'
@@ -92,15 +115,6 @@ def add_movie(request):
     form = MovieForm()
   
   return render(request, template_name, context={'form':form})
-
-@login_required
-def user_profile(request):
-  profile = get_object_or_404(Profile, user=request.user)
-  saved_movies = profile.saved_movies.all()
-  profile_form = ProfileForm()
-
-  return render(request, 'cinema/profile.html', context={'saved_movies':saved_movies, 
-                                                         'profile_form':profile_form})
 
 
 def save_movie(request, id):

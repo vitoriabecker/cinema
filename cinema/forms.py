@@ -1,6 +1,6 @@
 from django import forms
 from .models import Movie, Profile, Comment, Rating
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 
 
 class SignUpForm(UserCreationForm):
@@ -14,10 +14,13 @@ class LoginForm(AuthenticationForm):
   password = forms.CharField(label= 'Password', widget=forms.PasswordInput(attrs={'autocomplete':'current-password'}))
 
 
-class ProfileForm(forms.ModelForm):
+class UpdateProfileForm(forms.ModelForm):
+  avatar = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
+  bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
+
   class Meta:
     model = Profile
-    fields = ['user', 'avatar', 'bio', 'saved_movies',]
+    fields = ['avatar', 'bio']
 
 
 class MovieForm(forms.ModelForm):

@@ -7,20 +7,31 @@
 
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <!-- na realidade, eu nao preciso disso aqui, preciso apenas de um update profile
-   quando criamos um perfil, essas informações devem vir do signup, e então serem apenas EXIBIDAS
-   nessa template. E então, aqui, precisa haver um botão para update_profile, que ai sim eu passo
-   o form para atualizar. -->
 
-  {% for field in form %}
-   {{ form.as_p }}
-  {% endfor %}
+  <img src="{{ profile.avatar.url }}" alt="avatar">
 
-  <button type="submit">salvar perfil</button>
+  <label>Username:</label>
+  {{ user.username }}
+  <br>
+
+  <a href="{% url 'change_password' %}">Change password</a>
+  <hr>
+
+  <label>Change avatar</label>
+  {{ profile_form.avatar }}
+  <br>
+
+  <label>Bio</label>
+  {{ profile_form.bio }}
+  <br>
+  
+  <button type="submit">save changes</button>
 
 </form>
 
 <div class="saved-movies">
+  <p>FILMES SALVOS:</p>
+
   {% for movie in saved_movies %}
     {{ movie.title }}
   {% endfor %}
