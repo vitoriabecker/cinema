@@ -1,36 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sign in</title>
-</head>
-<body>
-  
-  <!-- na realidade, eu vou usar um block content aqui, mas enfim, faço isso depois -->
+{% extends 'cinema/base.html' %}
 
+{% block content %}
+
+  <!-- na realidade, eu vou usar um block content aqui, mas enfim, faço isso depois -->
   <form action="{% url 'login' %}" method="post">
 
-    <h3>enter your user to continue!!!</h3>
+    <h3>Entre em sua conta</h3>
 
     {% csrf_token %}
-    {{ form.username.label_tag }}
-    {{ form.username }}
+    <p>{{ form.username.label_tag }}
+    {{ form.username }}</p>
 
-    {{ form.password.label_tag }}
-    {{ form.password }}
+    </p>{{ form.password.label_tag }}
+    {{ form.password }}</p>
 
-    <input type="submit" value="login">
+    <input type="submit" value="entrar">
 
   </form>
   
-  <p>dont have an account? <a href="{% url 'signup' %}">register</a></p>
+  <p>Ainda não possui uma conta? <a href="{% url 'signup' %}">Criar conta</a></p>
 
   {% if messages %}
     {% for message in messages %}
       {{ message }}
     {% endfor %}
   {% endif %}
-
-</body>
-</html>
+  
+{% endblock content %}

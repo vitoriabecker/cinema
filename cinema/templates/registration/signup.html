@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>signup</title>
-</head>
-<body>
-  
-  <form method="post">
-    <h3>create an account</h3>
+{% extends 'cinema/base.html' %}
 
+{% block content %}
+
+  <h3>Crie uma conta</h3>
+  <p>Assista, comente e favorite filmes nacionais</p>
+
+  <form method="post">
     {% csrf_token %}
     {{ form }}
-    <button>submit</button>
+    <button>criar conta</button>
   </form>
   
   <div>
-    <p>already have an account? <a href="{% url 'login' %}">sign in</a></p>
+    <p>Já possui uma conta? <a href="{% url 'login' %}">Entre</a></p>
   </div>
 
-</body>
-</html>
+{% endblock content %}

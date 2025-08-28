@@ -1,40 +1,46 @@
-{% extends 'cinema/home.html' %}
+{% extends 'cinema/base.html' %}
 {% load static %}
 
 {% block content %}
 
-<h3>user profile</h3>
+  <h3>user profile</h3>
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-  <img src="{{ profile.avatar.url }}" alt="avatar">
+    <div class="perfil-info">
+      <!-- foto de capa também -->
+      <img src="{{ profile.avatar.url }}" alt="avatar">
 
-  <label>Username:</label>
-  {{ user.username }}
-  <br>
+      <p>{{ user.username }}</p>
+      <p>{{ saved_movies.count }} filmes</p>
 
-  <a href="{% url 'change_password' %}">Change password</a>
-  <hr>
+      <p>{{ profile.bio }}</p>
+    </div>
 
-  <label>Change avatar</label>
-  {{ profile_form.avatar }}
-  <br>
+    <div class="editar-perfil">
+      <!-- isso precisa de outra template, igual ao de perfil, mas que possibilita edição -->
+      <a href="{% url 'change_password' %}">Alterar senha</a>
+      <hr>
 
-  <label>Bio</label>
-  {{ profile_form.bio }}
-  <br>
-  
-  <button type="submit">save changes</button>
+      <label>Alterar foto</label>
+      {{ profile_form.avatar }}
+      <br>
 
-</form>
+      <label>Descrição</label>
+      {{ profile_form.bio }}
 
-<div class="saved-movies">
-  <p>FILMES SALVOS:</p>
+      <button type="submit">Salvar</button>
+    </div>
+  </form>
 
-  {% for movie in saved_movies %}
-    {{ movie.title }}
-  {% endfor %}
-</div>
+  <div class="filmes-salvos">
+    <p>Filmes favoritos</p>
+
+    {% for movie in saved_movies %}
+      {{ movie.poster }}
+      <p>{{ movie.title }} | {{ movie.year }}</p>
+    {% endfor %}
+  </div>
 
 {% endblock content %}

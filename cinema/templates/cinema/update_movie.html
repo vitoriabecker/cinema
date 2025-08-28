@@ -1,15 +1,15 @@
-{% extends 'cinema/home.html' %}
+{% extends 'cinema/base.html' %}
 {% load static %}
 
 {% block content %}
 
-<section class="uodatemovie-container">
+<div class="atualizar-filme">
   <div class="container">
+    <div class="atualizar-form">
 
-    <div class="updatemovie-form">
-
-      <h1>update movie</h1>
-      <form action="" method="post" enctype="multipart/form-data" novalidate>
+      <h1>Atualize o filme</h1>
+      
+      <form method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
 
         {% for field in form %}
@@ -17,17 +17,14 @@
           {{ field }}
         {% endfor %}
 
-        <div class="updatemovie-button">
-          <input type="submit" value="update movie">
-          <a href="{% url 'movie_detail' movie.id %}">cancel</a>
+        <div class="atualizar-botao">
+          <input type="submit" value="Atualizar filme">
+          <a href="{% url 'movie_detail' movie.id %}">Cancelar</a>
         </div>
-
       </form>
 
     </div>
-
   </div>
-
-</section>
+</div>
 
 {% endblock content %}

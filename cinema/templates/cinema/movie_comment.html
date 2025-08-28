@@ -1,16 +1,17 @@
-{% extends 'cinema/home.html' %}
+{% extends 'cinema/base.html' %}
 {% load static %}
 
 {% block content %}
 
-<div class="moviecomment-container">
+<div class="comentario-container">
   <div class="card-body">
 
-    <h3>leave a comment</h3>
+    <h3>O que você achou do filme? Compartilhe sua experiência.</h3>
+
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
-      <button type="submit">submit comment</button>
+      <button type="submit">comentar</button>
     </form>
 
   </div>

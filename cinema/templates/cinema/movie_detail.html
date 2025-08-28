@@ -2,146 +2,151 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movie detail</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>movie detail</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'main.js' %}" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
 
-  </head>
+<body>
 
-  <body>
-    
-    <p>movie name etc</p>
+  <!-- aqui vem o video -->
 
-    <!-- depois, isso vai vir de um media file, nao static, pq o user q vai criar e upar o video 
-    <video controls width="250"><source src="/cinema/static/videos/2023-06-06 22-39-03.mp4" type="video/mp4"/></video> 
-    
-    <video width="800" controls autoplay>
-      <source src="{% static 'videos/vvideo.mp4' %}" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    -->
-    
-    <div>
-      {{ movie.title }}
-      {{ movie.year }}
-      {{ movie.length }}
-    </div>
+  <div class="filme-info">
+    <div class="filme-info-1">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.year }}</p>
+      <p>{{ movie.length }}</p>
 
-    <div class="update-movie">
-      <a href="{% url 'update_movie' movie.id %}">Edit movie</a>
-    </div>
-
-    <div class="delete-movie">
-      <a href="{% url 'delete_movie' movie.id %}">delete movie</a>
-    </div>
-    
-    <!-- rating form -->
-    <form action="{% url 'movie_rate' movie.id %}" class="rating-stars" method="post" url="">
-      {% csrf_token %}
-      <button type="submit" class="fa fa-star my-btn" id="first" name="score" value="1"></button>
-      <button type="submit" class="fa fa-star my-btn" id="second" name="score" value="2"></button>
-      <button type="submit" class="fa fa-star my-btn" id="third" name="score" value="3"></button>
-      <button type="submit" class="fa fa-star my-btn" id="fourth" name="score" value="4"></button>
-      <button type="submit" class="fa fa-star my-btn" id="fifth" name="score" value="5"></button>
-    </form> 
-
-
-    <!-- save movie -->
-    {% if movie in profile.saved_movies.all %}
-      <a href="{% url 'save_movie' movie.id %}">unsave</a>
-    {% else %}
-      <a href="{% url 'save_movie' movie.id %}">save</a>
-    {% endif %}
-
-    <div class="moviecomment">
-      <div class="moviecomment-container">
-        <div class="card-body">
-
-          <h3>leave a comment</h3>
-          <form action="{% url 'movie_comment' movie.id %}" method="post">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button type="submit">submit comment</button>
-          </form>
-
-        </div>
+      <!-- rating form -->
+      <div class="form-avaliar">
+        <form action="{% url 'movie_rate' movie.id %}" class="rating-stars" method="post" url="">
+          {% csrf_token %}
+          <button type="submit" class="fa fa-star my-btn" id="first" name="score" value="1"></button>
+          <button type="submit" class="fa fa-star my-btn" id="second" name="score" value="2"></button>
+          <button type="submit" class="fa fa-star my-btn" id="third" name="score" value="3"></button>
+          <button type="submit" class="fa fa-star my-btn" id="fourth" name="score" value="4"></button>
+          <button type="submit" class="fa fa-star my-btn" id="fifth" name="score" value="5"></button>
+        </form> 
       </div>
+
+      {{ movie.genre }}
+      <p>Dirigido por {{ movie.director }}</p>
+
+      <!-- save movie | depois vou colocar o icon como button pra save e unsave -->
+      {% if movie in profile.saved_movies.all %}
+        <a href="{% url 'save_movie' movie.id %}">unsave</a>
+      {% else %}
+        <a href="{% url 'save_movie' movie.id %}">save</a>
+      {% endif %}
     </div>
 
-    <h2>{{ comments.count }} comments</h2>
-    {% for comment in comments %}
-      <p>
-      {{ comment.user }}
-      {{ comment.created_date }}
-      </p>
+    <div class="filme-info-2">
+      <h3>Sinopse</h3>
+      <p>{{ movie.synopsis }}</p>
+    </div>
+  </div>
 
-      {{ comment.text | linebreaks }}
-    {% endfor %}
-  </body>
 
-  <script>
-    var score = parseInt('{{ user_rating.score }}')
+  <!-- movie comment -->
 
-    const one = document.getElementById('first')
-    const two = document.getElementById('second')
-    const three = document.getElementById('third')
-    const four = document.getElementById('fourth')
-    const five = document.getElementById('fifth')
+  <div class="comentario">
+    <div class="comentario-form">
 
-    const form = document.querySelector('.rating-stars')
+      <!-- alterar isso depois, nao preciso de uma template só pra comments -->
+      <h3>O que você achou do filme? Compartilhe sua experiência.</h3>
+      <form action="{% url 'movie_comment' movie.id %}" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">comentar</button>
+      </form>
+    </div>
 
-    const csrf = document.getElementsByName('csrfmiddlewaretoken')
+    <div class="comentario-lista">
+      <h2>Comentários {{ comments.count }}</h2>
 
-    const handleStarSelect = (size) => {
-      const children = form.children
-      for (let i=0; i< children.length; i++) {
-        if(i <= size) {
-          children[i].classList.add('checked')
-        } else {
-          children[i].classList.remove('checked')
-        }
+      {% for comment in comments %}
+        <p>{{ comment.user }}
+           {{ comment.created_date }}</p>
+        <p>{{ comment.text | linebreaks }}</p>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  {% if request.user.is_superuser %}
+  <div class="editar-filme">
+    <a href="{% url 'update_movie' movie.id %}">Editar filme</a>
+  </div>
+
+  <div class="deletar-filme">
+    <a href="{% url 'delete_movie' movie.id %}">Deletar filme</a>
+  </div>
+  {% endif %}
+
+</body>
+
+
+<!-- script for star rating -->
+<script>
+  var score = parseInt('{{ user_rating.score }}')
+
+  const one = document.getElementById('first')
+  const two = document.getElementById('second')
+  const three = document.getElementById('third')
+  const four = document.getElementById('fourth')
+  const five = document.getElementById('fifth')
+
+  const form = document.querySelector('.rating-stars')
+
+  const csrf = document.getElementsByName('csrfmiddlewaretoken')
+
+  const handleStarSelect = (size) => {
+    const children = form.children
+    for (let i=0; i< children.length; i++) {
+      if(i <= size) {
+        children[i].classList.add('checked')
+      } else {
+        children[i].classList.remove('checked')
       }
     }
+  }
 
-    handleStarSelect(score)
+  handleStarSelect(score)
 
-    const handleSelect = (selection) => {
-      switch(selection){
-        case 'first': {
-          handleStarSelect(1)
-          return
-        }
-        case 'second': {
-          handleStarSelect(2)
-          return
-        }
-        case 'third': {
-          handleStarSelect(3)
-          return
-        }
-        case 'fourth': {
-          handleStarSelect(4)
-          return
-        }
-        case 'fifth': {
-          handleStarSelect(5)
-          return
-        }
+  const handleSelect = (selection) => {
+    switch(selection){
+      case 'first': {
+        handleStarSelect(1)
+        return
+      }
+      case 'second': {
+        handleStarSelect(2)
+        return
+      }
+      case 'third': {
+        handleStarSelect(3)
+        return
+      }
+      case 'fourth': {
+        handleStarSelect(4)
+        return
+      }
+      case 'fifth': {
+        handleStarSelect(5)
+        return
       }
     }
+  }
 
-    if (one) {
-      const arr = [one, two, three, four, five]
-      arr.forEach(item=> item.addEventListener('mouseover', (event)=> {
-        handleSelect(event.target.id)
-      }))
-    }
-
-  </script>
-
+  if (one) {
+    const arr = [one, two, three, four, five]
+    arr.forEach(item=> item.addEventListener('mouseover', (event)=> {
+      handleSelect(event.target.id)
+    }))
+  }
+</script>
 </html>

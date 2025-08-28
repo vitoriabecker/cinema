@@ -192,7 +192,6 @@ def add_comment_to_movie(request, id):
   movie = get_object_or_404(Movie, id=id)
 
   if request.method == 'POST':
-    print('fon')
     comment_form = CommentForm(request.POST)
 
     if comment_form.is_valid():

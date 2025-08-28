@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Home</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+  <header>
+
+    <h3>VIVI FILMES</h3>
+
+    <div class="navigation-bar">
+      <a href="{% url 'home' %}">página inicial</a>
+      <a href="#">sobre</a>
+      <a href="{% url 'movie_list' %}">filmes</a>
+    </div>
+
+    <div class="registration">
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}">Sair</a>
+      {% else %}
+        <a href="{% url 'signup' %}">Criar conta</a>
+        <a href="{% url 'login' %}">Entrar</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <main>    
+    {% block content %}
+    {% endblock content %}
+  </main>
+
+  <footer>
+    <div>
+      <img src="#" alt="logo">
+    </div>
+
+    <div class="fique-sabendo">
+      <h3>fique sabendo!</h3>
+      <p>insira seu e-mail para receber a nossa programação mensalmente</p>
+      <!-- input e button aqui -->
+    </div>
+
+    <div class="me-siga">
+      <a href="#">instagram</a>
+      <a href="#">linkedin</a>
+      <a href="#">github</a>
+    </div>
+
+    <div class="navegue">
+      <a href="{% url 'home' %}">página inicial</a>
+      <a href="#">sobre</a>
+      <a href="{% url 'movie_list' %}">filmes</a>
+
+      <div class="credit">criado por <span>vitoria</span></div>
+    </div>
+  </footer>
+</body>
+</html>

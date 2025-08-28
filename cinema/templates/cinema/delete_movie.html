@@ -1,15 +1,16 @@
-{% extends 'cinema/home.html' %}
+{% extends 'cinema/base.html' %}
 {% load static %}
 
 {% block content %}
 
-<section class="deletemovie-container">
-    <form method="post">
+<div class="deletemovie-container">
+  <form method="post">
     {% csrf_token %}
-    do you want to delete this movie?
-    <input type="submit" value="Yes">
-    <a href="{% url 'movie_detail' movie.id %}">Cancel</a>
+    <p>Você quer mesmo deletar esse filme?</p>
+
+    <input type="submit" value="Sim">
+    <a href="{% url 'movie_detail' movie.id %}">Cancelar</a>
   </form>
-</section>
+</div>
 
 {% endblock content %}
