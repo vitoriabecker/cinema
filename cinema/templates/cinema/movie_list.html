@@ -10,8 +10,8 @@
   <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
   {% endif %}
 
-  <h3><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></h3>
-  <p>{{ movie.year }}</p>
+  <p class="desc"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></p>
+  <p class="desc">{{ movie.year }}</p>
 {% endfor %}
 
 {% endblock content %}

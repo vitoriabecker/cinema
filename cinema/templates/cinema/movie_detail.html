@@ -33,7 +33,7 @@
         </form> 
       </div>
 
-      {{ movie.genre }}
+      <p>{{ movie.genre }}</p>
       <p>Dirigido por {{ movie.director }}</p>
 
       <!-- save movie | depois vou colocar o icon como button pra save e unsave -->
@@ -46,7 +46,7 @@
 
     <div class="filme-info-2">
       <h3>Sinopse</h3>
-      <p>{{ movie.synopsis }}</p>
+      <p class="desc">{{ movie.synopsis }}</p>
     </div>
   </div>
 
@@ -71,7 +71,7 @@
       {% for comment in comments %}
         <p>{{ comment.user }}
            {{ comment.created_date }}</p>
-        <p>{{ comment.text | linebreaks }}</p>
+        <p class="desc">{{ comment.text }}</p>
       {% endfor %}
     </div>
   </div>
