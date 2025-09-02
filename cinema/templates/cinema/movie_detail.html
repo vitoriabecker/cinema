@@ -16,10 +16,10 @@
   <!-- aqui vem o video -->
 
   <div class="filme-info">
-    <div class="filme-info-1">
-      <h3>{{ movie.title }}</h3>
-      <p>{{ movie.year }}</p>
-      <p>{{ movie.length }}</p>
+    <div>
+      <h1>{{ movie.title }}</h1>
+      <p class="desc-2">{{ movie.year }}</p>
+      <p class="desc-2">{{ movie.length }}</p>
 
       <!-- rating form -->
       <div class="form-avaliar">
@@ -33,8 +33,8 @@
         </form> 
       </div>
 
-      <p>{{ movie.genre }}</p>
-      <p>Dirigido por {{ movie.director }}</p>
+      <p class="desc-3">{{ movie.genre }}</p>
+      <p class="desc-3">Dirigido por {{ movie.director }}</p>
 
       <!-- save movie | depois vou colocar o icon como button pra save e unsave -->
       {% if movie in profile.saved_movies.all %}
@@ -45,14 +45,12 @@
     </div>
 
     <div class="filme-info-2">
-      <h3>Sinopse</h3>
-      <p class="desc">{{ movie.synopsis }}</p>
+      <h2>Sinopse</h2>
+      <p class="desc-1">{{ movie.synopsis }}</p>
     </div>
   </div>
 
-
   <!-- movie comment -->
-
   <div class="comentario">
     <div class="comentario-form">
 

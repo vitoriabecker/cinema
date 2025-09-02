@@ -3,15 +3,17 @@
 
 {% block content %}
 
-<p>lista de filmes</p>
+<div class="filme-lista">
+  <h1>Filmes | e outros</h2>
 
-{% for movie in movies %}
-  {% if movie.poster %}
-  <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
-  {% endif %}
+  {% for movie in movies %}
+    {% if movie.poster %}
+    <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+    {% endif %}
 
-  <p class="desc"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></p>
-  <p class="desc">{{ movie.year }}</p>
-{% endfor %}
+    <p class="desc-1"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></p>
+    <p class="desc-1">{{ movie.year }}</p>
+  {% endfor %}
+</div>
 
 {% endblock content %}

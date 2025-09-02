@@ -7,24 +7,92 @@
 }
 
 body {
-  background-color: #0d0c0c;
   font-family: 'Hanken Grotesk', 'sans-serif';
+  background-color: #0d0c0c;
 }
 
-.font2 {
-  font-family: 'Libre Baskerville', 'sans';
+/* header */
+.logo {
+  font-size: 1.5rem;
+  color: gold;
 }
+.nav-bar a{
+  font-size: 1rem;
+  color: gray;
+}
+.desc-1 {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 1.1rem;
+  color: gray; /* posso colocar ressa cor como padrão, e altero apenas nas que sao diferentes */
+}
+
+/* home */
+.inicial{
+  background-color: #202020;
+}
+.inicial h1, .sobre h1 {
+  font-size: 1.9rem;
+  color: gray;
+}
+article{
+  background-color: #202020;
+}
+.curiosidade h1, .filme-lista h1 {
+  font-size: 1.4rem;
+  color: gold;
+  font-weight: 500;
+}
+.curiosidade h2 {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 1.3rem;
+  color: wheat;
+  font-weight: bold;
+}
+
+/* movie list */
+
+/* movie detail */
+.filme-info h1 {
+  font-size: 1.3rem;
+  color: gray;
+  font-weight: bold;
+}
+.filme-info .desc-2{
+  font-size: 1.1;
+  color: gray;
+  font-weight: lighter;
+}
+.checked {
+  color: goldenrod;
+}
+.my-btn {
+  background-color: inherit !important;
+  border: 0 !important;
+}
+.desc-3 { 
+  font-size: 1rem;
+  color: gray; 
+}
+.filme-info-2 {
+  background-color: #202020;
+}
+.filme-info-2 h2 {
+  font-size: 1.1;
+  color: gray;
+  font-weight: 600;
+}
+
+/* movie comment */
+
+/* user profile */
+
+
+
+
+
 
 footer, .noticia {
   background-color: #202020;
 }
 
 /* rating and button, for now */
-.checked {
-  color: goldenrod;
-}
-
-.my-btn {
-  background-color: inherit !important;
-  border: 0 !important;
-}
