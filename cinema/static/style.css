@@ -8,27 +8,16 @@
 
 body {
   background-color: #0d0c0c;
+  font-family: 'Hanken Grotesk', 'sans-serif';
 }
 
-/*h1 {
-  font-family: "Hanken Grotesk", sans-serif;
-  color: #a6a6a6;
-  font-size: 39px;
-}*/
-
-.desc {
-  font-family: "Libre Baskerville", serif;
-  color: #929292;
-  font-size: 15px;
+.font2 {
+  font-family: 'Libre Baskerville', 'sans';
 }
 
-article {
-  font-family: "Libre Baskerville", serif;
-  color: #efefef;
-  font-size: 16px;
+footer, .noticia {
+  background-color: #202020;
 }
-
-
 
 /* rating and button, for now */
 .checked {
