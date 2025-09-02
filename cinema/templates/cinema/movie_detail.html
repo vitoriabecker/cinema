@@ -52,7 +52,7 @@
 
   <!-- movie comment -->
   <div class="comentario">
-    <div class="comentario-form">
+    <div>
 
       <!-- alterar isso depois, nao preciso de uma template só pra comments -->
       <h3>O que você achou do filme? Compartilhe sua experiência.</h3>
@@ -64,12 +64,12 @@
     </div>
 
     <div class="comentario-lista">
-      <h2>Comentários {{ comments.count }}</h2>
+      <h3>Comentários <span>{{ comments.count }}</span></h3>
 
       {% for comment in comments %}
-        <p>{{ comment.user }}
-           {{ comment.created_date }}</p>
-        <p class="desc">{{ comment.text }}</p>
+        <p class="comentario-usuario">{{ comment.user }}</p>
+        <p class="comentario-data">{{ comment.created_date }}</p>
+        <p class="desc-1">{{ comment.text }}</p>
       {% endfor %}
     </div>
   </div>
