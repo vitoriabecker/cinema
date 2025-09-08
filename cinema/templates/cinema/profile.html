@@ -12,9 +12,13 @@
       <!-- foto de capa também -->
       <img src="{{ profile.avatar.url }}" alt="avatar">
 
-      <p>{{ user.username }}</p>
-      <p>{{ saved_movies.count }} filmes</p>
-      <p class="desc">{{ profile.bio }}</p>
+      <p id="usuario">{{ user.username }}</p>
+      <span>{{ saved_movies.count }}</span>
+      <p id="qtd-filmes">filmes</p>
+
+      <p class="desc-1">{{ profile.bio }}</p>
+
+      <button>Editar perfil</button>
     </div>
 
     <div class="editar-perfil">
@@ -33,12 +37,14 @@
     </div>
   </form>
 
-  <div class="filmes-salvos">
-    <p>Filmes favoritos</p>
+  <div>
+    <p id="fav-filmes">Filmes favoritos</p>
+    <hr>
 
     {% for movie in saved_movies %}
       {{ movie.poster }}
-      <p>{{ movie.title }} | {{ movie.year }}</p>
+      <p class="filme-titulo"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></p>
+      <p class="filme-ano">{{ movie.year }}</p>
     {% endfor %}
   </div>
 

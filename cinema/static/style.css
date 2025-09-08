@@ -9,24 +9,133 @@
 }
 
 body {
-  background-color: #0d0c0c;
   font-family: 'Hanken Grotesk', 'sans-serif';
+  background-color: #0d0c0c;
+  color: #929292;
 }
 
-.font2 {
-  font-family: 'Libre Baskerville', 'sans';
+/* header */
+.logo {
+  font-size: 1.5rem;
+  color: #f2ab27;
 }
+.nav-bar a{
+  font-size: 1rem;
+}
+.desc-1 {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 1.1rem;
+}
+
+/* home */
+.inicial{
+  background-color: #202020;
+}
+.inicial h1, .sobre h1 {
+  font-size: 1.9rem;
+}
+article{
+  background-color: #202020;
+}
+.curiosidade h1, .filme-lista h1 {
+  font-size: 1.4rem;
+  color: #f2ab27;
+  font-weight: 500;
+}
+.curiosidade h2 {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 1.3rem;
+  color: #efefef;
+  font-weight: bold;
+}
+
+/* movie list */
+.filme-titulo, .filme-ano {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 0.9rem;
+  color: #efefef;
+}
+
+/* movie detail */
+.filme-info {
+  background-color: #202020;
+}
+.filme-info h1 {
+  font-size: 1.3rem;
+  color: #efefef;
+  font-weight: bold;
+}
+.filme-info .desc-2{
+  font-size: 1.1;
+  color: #efefef;
+  font-weight: lighter;
+}
+.checked {
+  color: #f2ab27;
+}
+.my-btn {
+  background-color: inherit !important;
+  border: 0 !important;
+}
+.desc-3 { 
+  font-size: 1rem;
+  color: #efefef; 
+}
+.filme-info-2 h2 {
+  font-size: 1.1;
+  font-weight: 600;
+}
+.comentario-lista h3 {
+  font-size: 1.2rem;
+  color: #efefef;
+}
+.comentario-lista span {
+  font-size: 1.1rem;
+  color: #0d0c0c;
+  background-color: #f2ab27;
+  padding: 0.1rem;
+  border-radius: 10px;
+}
+.comentario-usuario {
+  font-size: 1.1rem;
+  color: #efefef;
+}
+.comentario-data {
+  font-size: 0.9rem;
+  color: #545454;
+}
+
+/* movie comment */
+.comentario h2 {
+  font-size: 1.3rem;
+}
+
+/* user profile */
+.perfil-info #usuario {
+  font-size: 1.2rem;
+  color: #efefef;
+}
+.perfil-info span {
+  font-size: 1.1rem;
+  color: #efefef;
+}
+.perfil-info #qtd-filmes {
+  font-size: 1rem;
+  color: #efefef;
+  font-weight: lighter;
+}
+#fav-filmes {
+  font-family: 'Libre Baskerville', 'sans';
+  font-size: 1.2rem;
+  color: #efefef;
+} 
+
+
+
+
 
 footer, .noticia {
   background-color: #202020;
 }
 
 /* rating and button, for now */
-.checked {
-  color: goldenrod;
-}
-
-.my-btn {
-  background-color: inherit !important;
-  border: 0 !important;
-}

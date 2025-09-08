@@ -3,17 +3,15 @@
 
 {% block content %}
 
-<div class="comentario-container">
-  <div class="card-body">
-
-    <h3>O que você achou do filme? Compartilhe sua experiência.</h3>
+<div class="comentario">
+  <div>
+    <h2>O que você achou do filme? Compartilhe sua experiência.</h3>
 
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">comentar</button>
     </form>
-
   </div>
 </div>
 
