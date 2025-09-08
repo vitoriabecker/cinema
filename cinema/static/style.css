@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* fazer todo estilo aquilo, utilizar apenas grid, display com tailwind */
+
 * {
   padding: 0;
   margin: 0;
