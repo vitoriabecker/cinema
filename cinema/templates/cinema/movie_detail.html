@@ -18,8 +18,7 @@
   <div class="filme-info">
     <div>
       <h1>{{ movie.title }}</h1>
-      <p class="desc-2">{{ movie.year }}</p>
-      <p class="desc-2">{{ movie.length }}</p>
+      <p class="desc-2">{{ movie.year }} — {{ movie.length }}</p> 
 
       <!-- rating form -->
       <div class="form-avaliar">
@@ -55,7 +54,7 @@
     <div>
 
       <!-- alterar isso depois, nao preciso de uma template só pra comments -->
-      <h3>O que você achou do filme? Compartilhe sua experiência.</h3>
+      <h3><span>O que você achou do filme?</span> Compartilhe sua experiência.</h3>
       <form action="{% url 'movie_comment' movie.id %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}

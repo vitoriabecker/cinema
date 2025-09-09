@@ -9,15 +9,16 @@
 
   <title>Home</title>
 
+  <!-- font hk grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- hk grotesk -->
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
   <!-- libre baskerville -->
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 
 </head>
 
@@ -34,10 +35,10 @@
 
     <div>
       {% if request.user.is_authenticated %}
-        <a class="logout" href="{% url 'logout' %}">Sair</a>
+        <a id="logout" href="{% url 'logout' %}">sair</a>
       {% else %}
-        <a class="signup" href="{% url 'signup' %}">Criar conta</a>
-        <a class="login" href="{% url 'login' %}">Entrar</a>
+        <a id="signup" href="{% url 'signup' %}">Criar conta</a>
+        <a id="login" href="{% url 'login' %}">Entrar</a>
       {% endif %}
     </div>
   </header>
