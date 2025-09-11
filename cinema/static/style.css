@@ -2,6 +2,28 @@
 
 /* fazer todo estilo aquilo, utilizar apenas grid, display com tailwind */
 
+/* aqui eu já seto qual tamanho eu quero pra img, 
+   pq o padding vai garantir q ela se mantenha com margem e no centro, 
+   uma vez que o padding é no card, e nao na img em si. */
+.movie-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: gray;
+  width: 200px;
+  height: 300px;
+}
+
+.movie-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+
+
 * {
   padding: 0;
   margin: 0;
