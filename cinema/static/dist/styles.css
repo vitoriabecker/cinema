@@ -7,21 +7,14 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-neutral-200: oklch(92.2% 0 0);
-    --color-neutral-500: oklch(55.6% 0 0);
+    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-neutral-600: oklch(43.9% 0 0);
+    --spacing: 0.25rem;
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
-    --text-6xl: 3.75rem;
-    --text-6xl--line-height: 1;
     --font-weight-light: 300;
-    --font-weight-bold: 700;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -234,6 +227,12 @@
       max-width: 96rem;
     }
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
   .\!hidden {
     display: none !important;
   }
@@ -264,8 +263,17 @@
   .table-cell {
     display: table-cell;
   }
+  .h-auto {
+    height: auto;
+  }
   .h-min {
     height: min-content;
+  }
+  .w-56 {
+    width: calc(var(--spacing) * 56);
+  }
+  .max-w-full {
+    max-width: 100%;
   }
   .border-collapse {
     border-collapse: collapse;
@@ -276,8 +284,14 @@
   .resize {
     resize: both;
   }
+  .grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
   .content-start {
     align-content: flex-start;
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
   }
   .truncate {
     overflow: hidden;
@@ -287,43 +301,32 @@
   .rounded {
     border-radius: 0.25rem;
   }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
   }
-  .text-5xl {
-    font-size: var(--text-5xl);
-    line-height: var(--tw-leading, var(--text-5xl--line-height));
-  }
-  .text-6xl {
-    font-size: var(--text-6xl);
-    line-height: var(--tw-leading, var(--text-6xl--line-height));
+  .text-center {
+    text-align: center;
   }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
-  }
   .font-light {
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
-  }
-  .text-neutral-200 {
-    color: var(--color-neutral-200);
-  }
-  .text-neutral-500 {
-    color: var(--color-neutral-500);
   }
   .text-neutral-600 {
     color: var(--color-neutral-600);
@@ -355,6 +358,10 @@
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .ring {
@@ -399,21 +406,154 @@
   box-sizing: border-box;
 }
 body {
+  font-family: "Hanken Grotesk", sans-serif;
   background-color: #0d0c0c;
-  font-family: 'Hanken Grotesk', 'sans-serif';
+  color: #929292;
 }
-.font2 {
-  font-family: 'Libre Baskerville', 'sans';
+main {
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
-footer, .noticia {
+.logo {
+  font-size: 3.5rem;
+  color: #f2ab27;
+}
+.nav-bar a {
+  text-decoration: none;
+  color: #a6a6a6;
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+.desc-1 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1rem;
+}
+#logout {
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #262425;
+  color: #f2ab27;
+  border-radius: 1rem;
+}
+.inicial {
   background-color: #202020;
 }
+.inicial h1, .sobre h1 {
+  font-size: 3rem;
+  line-height: 2.9rem;
+}
+article {
+  background-color: #202020;
+}
+.curiosidade h1, .filme-lista h1 {
+  font-size: 1.5rem;
+  color: #f2ab27;
+  font-weight: 300;
+}
+.curiosidade h2 {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.3rem;
+  color: #efefef;
+  font-weight: bold;
+}
+.filme-titulo-ano, .filme-titulo-ano a {
+  text-decoration: none;
+  font-family: "Libre Baskerville", serif;
+  font-size: 0.8rem;
+  color: #efefef;
+}
+.filme-info {
+  background-color: #202020;
+}
+.filme-info h1 {
+  font-size: 1.6rem;
+  color: #efefef;
+  font-weight: bold;
+}
+.filme-info .desc-2 {
+  font-size: 1.1;
+  color: #cecece;
+  font-weight: lighter;
+}
 .checked {
-  color: goldenrod;
+  color: #f2ab27;
 }
 .my-btn {
   background-color: inherit !important;
   border: 0 !important;
+}
+.desc-3 {
+  font-size: 0.9rem;
+  color: #cecece;
+}
+.filme-info-2 h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.comentario h3 {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+.comentario h3 span {
+  font-weight: bold;
+}
+.comentario-lista h3 {
+  font-size: 1rem;
+  color: #efefef;
+  font-weight: bold;
+}
+.comentario-lista span {
+  font-size: 0.8rem;
+  color: #0d0c0c;
+  background-color: #f2ab27;
+  padding: 0.1rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.comentario-usuario {
+  font-size: 0.9rem;
+  color: #efefef;
+  font-weight: 500;
+}
+.comentario-data {
+  font-size: 0.8rem;
+  color: #545454;
+}
+.comentario h2 {
+  font-size: 1.3rem;
+}
+.perfil-info #usuario {
+  font-size: 1.2rem;
+  color: #efefef;
+}
+.perfil-info span {
+  font-size: 1.1rem;
+  color: #efefef;
+}
+.perfil-info #qtd-filmes {
+  font-size: 1rem;
+  color: #efefef;
+  font-weight: lighter;
+}
+#fav-filmes {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.2rem;
+  color: #efefef;
+}
+footer {
+  background-color: #202020;
+}
+footer h2 {
+  font-size: 1.1rem;
+  color: #f2ab27;
+  font-weight: 300;
+}
+footer p, footer a {
+  font-family: "Libre Baskerville", serif;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #efefef;
+  font-weight: 600;
 }
 @property --tw-rotate-x {
   syntax: "*";

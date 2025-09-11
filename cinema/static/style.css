@@ -14,6 +14,11 @@ body {
   color: #929292;
 }
 
+main {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
 /* header */
 .logo {
   font-size: 3.5rem;
@@ -62,15 +67,12 @@ article{
   font-weight: bold;
 }
 
-/* movie list */
-.filme-img {
-  background-color: #202020;
-}
+/* movie list 
 .filme-lista img {
   max-width: 180px;
   width: 100%;
   height: auto;
-}
+}*/
 .filme-titulo-ano, .filme-titulo-ano a {
   text-decoration: none;
   font-family: "Libre Baskerville", serif;
