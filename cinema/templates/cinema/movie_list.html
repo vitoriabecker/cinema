@@ -8,14 +8,18 @@
   
   <div class="grid grid-cols-6 gap-6">
     {% for movie in movies %}
-      <div class="bg-gray-800 p-4 rounded-xl text-center shadow-md">
+      <div class="filme-card flex flex-col justify-start items-center box-border shadow-md">
         {% if movie.poster %}
-          <img class="mx-auto max-w-full h-auto rounded-lg" src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+        <div class="filme-img">
+          <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+        </div>
         {% endif %}
-        <p class="filme-titulo-ano mt-2"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }} </a>| {{ movie.year }}</p>
+        <p class="filme-titulo-ano"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }} </a>| {{ movie.year }}</p>
       </div>
     {% endfor %}
   </div>
 </div>
+
+
 
 {% endblock content %}

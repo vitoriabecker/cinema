@@ -7,14 +7,11 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-gray-800: oklch(27.8% 0.033 256.848);
     --color-neutral-600: oklch(43.9% 0 0);
     --spacing: 0.25rem;
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
     --font-weight-light: 300;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -227,11 +224,8 @@
       max-width: 96rem;
     }
   }
-  .mx-auto {
-    margin-inline: auto;
-  }
-  .mt-2 {
-    margin-top: calc(var(--spacing) * 2);
+  .box-border {
+    box-sizing: border-box;
   }
   .\!hidden {
     display: none !important;
@@ -241,6 +235,9 @@
   }
   .contents {
     display: contents;
+  }
+  .flex {
+    display: flex;
   }
   .grid {
     display: grid;
@@ -263,17 +260,8 @@
   .table-cell {
     display: table-cell;
   }
-  .h-auto {
-    height: auto;
-  }
   .h-min {
     height: min-content;
-  }
-  .w-56 {
-    width: calc(var(--spacing) * 56);
-  }
-  .max-w-full {
-    max-width: 100%;
   }
   .border-collapse {
     border-collapse: collapse;
@@ -287,8 +275,17 @@
   .grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+  .flex-col {
+    flex-direction: column;
+  }
   .content-start {
     align-content: flex-start;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-start {
+    justify-content: flex-start;
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
@@ -301,24 +298,9 @@
   .rounded {
     border-radius: 0.25rem;
   }
-  .rounded-lg {
-    border-radius: var(--radius-lg);
-  }
-  .rounded-xl {
-    border-radius: var(--radius-xl);
-  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
-  }
-  .bg-gray-800 {
-    background-color: var(--color-gray-800);
-  }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
-  }
-  .text-center {
-    text-align: center;
   }
   .text-lg {
     font-size: var(--text-lg);
@@ -456,8 +438,26 @@ article {
   color: #efefef;
   font-weight: bold;
 }
+.filme-card {
+  padding: 1.3rem;
+  background-color: #202020;
+  width: 200px;
+  height: 320px;
+  gap: 0.8rem;
+}
+.filme-img {
+  width: 100%;
+  height: 80%;
+  overflow: hidden;
+}
+.filme-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .filme-titulo-ano, .filme-titulo-ano a {
   text-decoration: none;
+  text-align: center;
   font-family: "Libre Baskerville", serif;
   font-size: 0.8rem;
   color: #efefef;
