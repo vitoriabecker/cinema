@@ -6,10 +6,14 @@
    pq o padding vai garantir q ela se mantenha com margem e no centro, 
    uma vez que o padding é no card, e nao na img em si. */
 
-* {
+
+@layer base {
+  * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -21,6 +25,10 @@ body {
 main {
   margin-left: 10rem;
   margin-right: 10rem;
+}
+
+.hr {
+  background-color: #f2ab27;
 }
 
 /* header */
@@ -37,6 +45,7 @@ main {
 .desc-1 {
   font-family: "Libre Baskerville", serif;
   font-size: 1rem;
+  text-align: justify;
 }
 #logout{
   text-decoration: none;
@@ -51,10 +60,12 @@ main {
 /* home */
 .inicial{
   background-color: #202020;
+  border-radius: 50px;
 }
 .inicial h1, .sobre h1 {
   font-size: 3rem;
   line-height: 2.9rem;
+  font-weight: bold;
 }
 article{
   background-color: #202020;
