@@ -7,7 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-amber-400: oklch(82.8% 0.189 84.429);
     --color-neutral-600: oklch(43.9% 0 0);
     --spacing: 0.25rem;
     --text-lg: 1.125rem;
@@ -228,23 +227,23 @@
   .my-8 {
     margin-block: calc(var(--spacing) * 8);
   }
-  .my-16 {
-    margin-block: calc(var(--spacing) * 16);
+  .my-12 {
+    margin-block: calc(var(--spacing) * 12);
   }
   .my-20 {
     margin-block: calc(var(--spacing) * 20);
   }
-  .mt-2 {
-    margin-top: calc(var(--spacing) * 2);
-  }
-  .mt-4 {
-    margin-top: calc(var(--spacing) * 4);
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
   }
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+  }
+  .mt-12 {
+    margin-top: calc(var(--spacing) * 12);
   }
   .box-border {
     box-sizing: border-box;
@@ -282,14 +281,8 @@
   .table-cell {
     display: table-cell;
   }
-  .h-48 {
-    height: calc(var(--spacing) * 48);
-  }
   .h-54 {
     height: calc(var(--spacing) * 54);
-  }
-  .h-58 {
-    height: calc(var(--spacing) * 58);
   }
   .h-min {
     height: min-content;
@@ -297,14 +290,8 @@
   .h-px {
     height: 1px;
   }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
-  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
-  }
-  .w-auto {
-    width: auto;
   }
   .w-full {
     width: 100%;
@@ -342,6 +329,9 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .gap-x-16 {
+    column-gap: calc(var(--spacing) * 16);
+  }
   .truncate {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -364,11 +354,8 @@
   .object-cover {
     object-fit: cover;
   }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
-  }
-  .p-14 {
-    padding: calc(var(--spacing) * 14);
+  .p-20 {
+    padding: calc(var(--spacing) * 20);
   }
   .px-28 {
     padding-inline: calc(var(--spacing) * 28);
@@ -516,13 +503,13 @@ article {
   background-color: #202020;
 }
 .curiosidade h1, .filme-lista h1 {
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   color: #f2ab27;
   font-weight: 300;
 }
 .curiosidade h2 {
   font-family: "Libre Baskerville", serif;
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: #efefef;
   font-weight: bold;
 }
