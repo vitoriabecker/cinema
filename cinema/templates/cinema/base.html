@@ -24,14 +24,22 @@
 </head>
 
 <body>
-  <header>
-    
-    <h2 class="logo">VIVI FILMES</h3>
 
-    <div class="nav-bar">
-      <a href="{% url 'home' %}">página inicial</a>
-      <a href="#">sobre</a>
-      <a href="{% url 'movie_list' %}">filmes</a>
+  <p class="top flex justify-center items-center">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+  </p>
+
+  <header class="flex flex-row items-center justify-between my-8">
+    
+    <div class="flex flex-row items-center gap-x-14">
+      <h1 class="logo">VIVI|FILMES</h1>
+
+      <nav class="nav-bar flex flex-row gap-x-10">
+        <a href="{% url 'home' %}">página inicial</a>
+        <a href="#">sobre</a>
+        <a href="#">curiosidades</a>
+        <a href="{% url 'movie_list' %}">filmes</a>
+      </nav>
     </div>
 
     <div>
@@ -49,32 +57,39 @@
     {% endblock content %}
   </main>
 
-  <footer>
-    <div>
-      <img src="#" alt="logo">
+  <footer class="mt-40 px-30 justify-between">
+
+    <div class="flex flex-row items-center gap-x-20">
+      <h1 class="logo">VIVI|FILMES</h1>
+
+      <div class="footer-info flex flex-row items-center gap-x-10">
+        <div>
+          <h2>fique sabendo!</h3>
+          <p>insira seu e-mail para receber a nossa programação mensalmente</p>
+          <!-- input e button para email aqui -->
+        </div>
+
+        <div class="me-siga flex flex-col">
+          <h2>me siga:</h2>
+          <a href="#">instagram</a>
+          <a href="#">linkedin</a>
+          <a href="#">github</a>
+        </div>
+
+        <div class="navegue flex flex-col">
+          <h2>navegue</h2>
+          <a href="{% url 'home' %}">página inicial</a>
+          <a href="#">sobre</a>
+          <a href="#">curiosidades</a>
+          <a href="{% url 'movie_list' %}">filmes</a>
+        </div>
+      </div>
     </div>
 
     <div>
-      <h2>fique sabendo!</h3>
-      <p>insira seu e-mail para receber a nossa programação mensalmente</p>
-      <!-- input e button para email aqui -->
+      <hr class="h-0.5 mt-8 bg-neutral-700 border-0">
+      <p class="desc-1">© 2025 VIVI|FILMES. Todos os direitos reservados.</p>
     </div>
-
-    <div class="me-siga">
-      <h2>me siga:</h2>
-      <a href="#">instagram</a>
-      <a href="#">linkedin</a>
-      <a href="#">github</a>
-    </div>
-
-    <div class="navegue">
-      <h2>navegue</h2>
-      <a href="{% url 'home' %}">página inicial</a>
-      <a href="#">sobre</a>
-      <a href="{% url 'movie_list' %}">filmes</a>
-    </div>
-
-    <div class="credit">criado por <span>vitoria</span></div>
   </footer>
 </body>
 </html>

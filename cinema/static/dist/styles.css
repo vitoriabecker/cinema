@@ -8,6 +8,7 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-neutral-600: oklch(43.9% 0 0);
+    --color-neutral-700: oklch(37.1% 0 0);
     --spacing: 0.25rem;
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
@@ -227,8 +228,8 @@
   .my-8 {
     margin-block: calc(var(--spacing) * 8);
   }
-  .my-12 {
-    margin-block: calc(var(--spacing) * 12);
+  .my-16 {
+    margin-block: calc(var(--spacing) * 16);
   }
   .my-20 {
     margin-block: calc(var(--spacing) * 20);
@@ -244,6 +245,9 @@
   }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
+  }
+  .mt-40 {
+    margin-top: calc(var(--spacing) * 40);
   }
   .box-border {
     box-sizing: border-box;
@@ -280,6 +284,9 @@
   }
   .table-cell {
     display: table-cell;
+  }
+  .h-0\.5 {
+    height: calc(var(--spacing) * 0.5);
   }
   .h-54 {
     height: calc(var(--spacing) * 54);
@@ -320,6 +327,9 @@
   .items-center {
     align-items: center;
   }
+  .justify-between {
+    justify-content: space-between;
+  }
   .justify-center {
     justify-content: center;
   }
@@ -329,8 +339,17 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .gap-x-10 {
+    column-gap: calc(var(--spacing) * 10);
+  }
+  .gap-x-14 {
+    column-gap: calc(var(--spacing) * 14);
+  }
   .gap-x-16 {
     column-gap: calc(var(--spacing) * 16);
+  }
+  .gap-x-20 {
+    column-gap: calc(var(--spacing) * 20);
   }
   .truncate {
     overflow: hidden;
@@ -351,6 +370,9 @@
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
+  .bg-neutral-700 {
+    background-color: var(--color-neutral-700);
+  }
   .object-cover {
     object-fit: cover;
   }
@@ -359,6 +381,9 @@
   }
   .px-28 {
     padding-inline: calc(var(--spacing) * 28);
+  }
+  .px-30 {
+    padding-inline: calc(var(--spacing) * 30);
   }
   .text-center {
     text-align: center;
@@ -461,16 +486,23 @@ body {
   background-color: #0d0c0c;
   color: #929292;
 }
-main {
+header, main {
   margin-left: 10rem;
   margin-right: 10rem;
 }
 .hr {
   background-color: #f2ab27;
 }
+.top {
+  background-color: #262425;
+  color: #545454;
+  height: 3.5rem;
+}
 .logo {
-  font-size: 3.5rem;
+  font-size: 3.1rem;
   color: #f2ab27;
+  font-weight: bold;
+  line-height: 2em;
 }
 .nav-bar a {
   text-decoration: none;
@@ -491,7 +523,7 @@ main {
   border-radius: 1rem;
 }
 .inicial {
-  background-color: #202020;
+  background-color: #323131;
   border-radius: 50px;
 }
 .inicial h1, .sobre h1 {
@@ -623,7 +655,7 @@ footer h2 {
   color: #f2ab27;
   font-weight: 300;
 }
-footer p, footer a {
+.footer-info a, .footer-info p {
   font-family: "Libre Baskerville", serif;
   text-decoration: none;
   font-size: 0.8rem;

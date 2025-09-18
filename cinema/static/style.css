@@ -22,7 +22,7 @@ body {
   color: #929292;
 }
 
-main {
+header, main {
   margin-left: 10rem;
   margin-right: 10rem;
 }
@@ -31,10 +31,18 @@ main {
   background-color: #f2ab27;
 }
 
+.top {
+  background-color: #262425;
+  color: #545454;
+  height: 3.5rem;
+}
+
 /* header */
 .logo {
-  font-size: 3.5rem;
+  font-size: 3.1rem;
   color: #f2ab27;
+  font-weight: bold;
+  line-height: 2em;
 }
 .nav-bar a{
   text-decoration: none;
@@ -59,7 +67,7 @@ main {
 
 /* home */
 .inicial{
-  background-color: #202020;
+  background-color: #323131;
   border-radius: 50px;
 }
 .inicial h1, .sobre h1 {
@@ -197,7 +205,7 @@ article{
 } 
 
 
-
+/* footer */
 footer {
   background-color: #202020;
 }
@@ -206,7 +214,7 @@ footer h2 {
   color: #f2ab27;
   font-weight: 300;
 }
-footer p, footer a {
+.footer-info a, .footer-info p {
   font-family: "Libre Baskerville", serif;
   text-decoration: none;
   font-size: 0.8rem;
