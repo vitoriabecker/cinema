@@ -31,29 +31,60 @@
 
   <header>
     <nav class="">
+      <div class="flex justify-between items-center py-8">
 
-      <div>
-        <h1 class="logo">VIVI|FILMES</h1>
+        <div class="flex shrink-0">
+          <!--<img src="static/images/movie-frame.png" alt="Logo" class="w-auto h-12 md:h-13 lg:h-14">-->
+          <p class="logo text-2xl md:text-4xl lg:text-5xl flex items-center uppercase">vivi|filmes</p>
+        </div>
+
+        <div class="hidden md:block">
+          <ul class="flex items-center gap-6">
+            <li><a class="inline-block py-1 px-6 hover:text-amber-500" href="{% url 'home' %}">página inicial</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="#">sobre</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="#">curiosidades</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="{% url 'movie_list' %}">filmes</a></li>
+          </ul>
+        </div>
+
+        <div class="flex items-center gap-4">
+          {% if request.user.is_authenticated %}
+            <!-- ta horrivel esse botao, alterar depois -->
+            <a class="rounded-md px-6 py-2 duration-200 hidden md:block" id="logout" href="{% url 'logout' %}">sair</a>
+          {% else %}
+            <a class="" id="signup" href="{% url 'signup' %}">Criar conta</a>
+            <a class="" id="login" href="{% url 'login' %}">Entrar</a>
+          {% endif %}
+        </div>
+
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <!-- simple 3 bars icon -->
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
 
-      <div class="">
-        <ul class="">
-          <li><a href="{% url 'home' %}">página inicial</a></li>
-          <li><a href="#">sobre</a></li>
-          <li><a href="#">curiosidades</a></li>
-          <li><a href="{% url 'movie_list' %}">filmes</a></li>
+      <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+        <ul>
+          <li><a class="block py-2 hover:text-amber-500" href="{% url 'home' %}">página inicial</a></li>
+          <li><a class="block py-2 hover:text-amber-500" href="#">sobre</a></li>
+          <li><a class="block py-2 hover:text-amber-500" href="#">curiosidades</a></li>
+          <li><a class="block py-2 hover:text-amber-500" href="{% url 'movie_list' %}">filmes</a></li>
         </ul>
       </div>
 
-      <div>
-        {% if request.user.is_authenticated %}
-          <a class="" id="logout" href="{% url 'logout' %}">sair</a>
-        {% else %}
-          <a class="" id="signup" href="{% url 'signup' %}">Criar conta</a>
-          <a class="" id="login" href="{% url 'login' %}">Entrar</a>
-        {% endif %}
-      </div>
     </nav>
+
+    <script>
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('mobile-menu');
+
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+    </script>
+
   </header>
 
   <main>    

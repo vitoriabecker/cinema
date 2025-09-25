@@ -39,7 +39,6 @@ header, main {
 
 /* header */
 .logo {
-  /* font-size: 3.1rem; */
   color: #f2ab27;
   font-weight: bold;
 }
@@ -59,7 +58,6 @@ header, main {
   font-weight: bold;
   background-color: #262425;
   color: #f2ab27;
-  border-radius: 1rem;
 }
 #logout:hover {
   background: #545454;
