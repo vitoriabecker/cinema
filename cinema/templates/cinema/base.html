@@ -25,7 +25,7 @@
 
 <body>
 
-  <p class="top flex justify-center items-center">
+  <p class="top flex justify-center items-center h-10 text-xs px-5 md:text-sm">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
   </p>
 
@@ -40,10 +40,10 @@
 
         <div class="hidden md:block">
           <ul class="flex items-center gap-6">
-            <li><a class="inline-block py-1 px-6 hover:text-amber-500" href="{% url 'home' %}">página inicial</a></li>
-            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="#">sobre</a></li>
-            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="#">curiosidades</a></li>
-            <li><a class="inline-block py-1 px-3 hover:text-amber-500" href="{% url 'movie_list' %}">filmes</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-400" href="{% url 'home' %}">página inicial</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-400" href="#">sobre</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-400" href="#">curiosidades</a></li>
+            <li><a class="inline-block py-1 px-3 hover:text-amber-400" href="{% url 'movie_list' %}">filmes</a></li>
           </ul>
         </div>
 
@@ -73,7 +73,6 @@
           <li><a class="block py-2 hover:text-amber-500" href="{% url 'movie_list' %}">filmes</a></li>
         </ul>
       </div>
-
     </nav>
 
     <script>
