@@ -22,10 +22,10 @@ body {
   color: #929292;
 }
 
-header, main {
+/*header, main {
   margin-left: 10rem;
   margin-right: 10rem;
-}
+}*/
 
 .hr {
   background-color: #f2ab27;
@@ -67,7 +67,6 @@ header, main {
   border-radius: 50px;
 }
 .inicial h1, .sobre h1 {
-  font-size: 3rem;
   line-height: 2.9rem;
   font-weight: bold;
 }
@@ -75,13 +74,11 @@ article{
   background-color: #202020;
 }
 .curiosidade h1, .filme-lista h1 {
-  font-size: 2.4rem;
   color: #f2ab27;
   font-weight: 300;
 }
 .curiosidade h2 {
   font-family: "Libre Baskerville", serif;
-  font-size: 2rem;
   color: #efefef;
   font-weight: bold;
 }
