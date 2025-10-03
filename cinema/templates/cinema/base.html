@@ -35,7 +35,7 @@
 
         <div class="flex shrink-0">
           <!--<img src="static/images/movie-frame.png" alt="Logo" class="w-auto h-12 md:h-13 lg:h-14">-->
-          <p class="logo text-2xl md:text-4xl lg:text-5xl flex items-center uppercase">vivi|filmes</p>
+          <h1 class="logo text-2xl md:text-4xl lg:text-5xl flex items-center uppercase">vivi|filmes</h1>
         </div>
 
         <div class="hidden md:block">
@@ -91,40 +91,55 @@
     {% endblock content %}
   </main>
 
-  <footer class="mt-40 px-30 justify-between">
+  <footer>
+    <div class="max-w-7xl mx-auto py-16 px-12 lg:px-0 grid lg:grid-cols-3 gap-8">
+      <div>
+        <h1 class="logo text-2xl md:text-4xl lg:text-5xl flex items-center uppercase">vivi|filmes</h1>
+        <p class="desc-1 py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed sunt a numquam asperiores accusantium nam aperiam, repudiandae veniam totam, minima reprehenderit, ipsum amet aut laboriosam ea quia deleniti suscipit eaque!</p>
+      </div>
 
-    <div class="flex flex-row gap-x-48 py-16">
-      <h1 class="logo">VIVI|FILMES</h1>
-
-      <div class="footer-info flex flex-row gap-x-16">
-        <div class="">
-          <h2>fique sabendo!</h3>
-          <p>insira seu e-mail para receber a nossa programação mensalmente</p>
+      <div class="lg:col-span-2 flex justify-between mt-6">
+        <div>
+          <h2>fique sabendo!</h2>
+          <p class="desc-1">insira seu e-mail para receber a nossa</p>
+          <p class="desc-1">programação mensalmente</p>
           <!-- input e button para email aqui -->
         </div>
 
-        <div class="me-siga flex flex-col">
-          <h2>me siga:</h2>
-          <a href="#">instagram</a>
-          <a href="#">linkedin</a>
-          <a href="#">github</a>
+        <div>
+          <div class="me-siga">
+            <h2>me siga:</h2>
+            <ul>
+              <li><a class="desc-1" href="#">⊙</a></li>
+              <li><a class="desc-1" href="#">⊙</a></li>
+              <li><a class="desc-1" href="#">⊙</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="navegue flex flex-col">
-          <h2>navegue</h2>
-          <a href="{% url 'home' %}">página inicial</a>
-          <a href="#">sobre</a>
-          <a href="#">curiosidades</a>
-          <a href="{% url 'movie_list' %}">filmes</a>
+        <div>
+          <div>
+            <h2>navegue</h2>
+            <ul>
+              <li><a class="desc-1 py-2" href="{% url 'home' %}">página inicial</a></li>
+              <li><a class="desc-1 py-2" href="#">sobre</a></li>
+              <li><a class="desc-1 py-2" href="#">curiosidades</a></li>
+              <li><a class="desc-1 py-2" href="{% url 'movie_list' %}">filmes</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
-    <hr class="h-0.5 bg-neutral-700 border-0">
+    <div class="max-w-7xl mx-auto px-12 lg:px-0">
+      <div>
+        <hr class="h-0.5 bg-neutral-700 border-0">
+      </div>
 
-    <div class="flex flex-row justify-between py-3">
-      <p class="text-sm">© 2025 VIVI|FILMES, Rio Grande do Sul, Brasil. Todos os direitos reservados.</p>
-      <a class="text-sm font-bold" href="#">Voltar ao topo ↑</a>
+      <div class="flex justify-between items-center py-2.5">
+        <p class="">© 2025 VIVI|FILMES, Rio Grande do Sul, Brasil. Todos os direitos reservados.</p>
+        <a class="" href="#">Voltar ao topo ↑</a>
+      </div>
     </div>
   </footer>
 </body>
