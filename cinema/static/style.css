@@ -22,11 +22,6 @@ body {
   color: #929292;
 }
 
-/*header, main {
-  margin-left: 10rem;
-  margin-right: 10rem;
-}*/
-
 .hr {
   background-color: #f2ab27;
 }
@@ -44,11 +39,11 @@ body {
 .nav-bar a{
   text-decoration: none;
   color: #a6a6a6;
-  font-size: 1.1rem;
   font-weight: 300;
 }
 .desc-1 {
   font-family: "Libre Baskerville", serif;
+  color: #929292;
   text-align: justify;
 }
 #logout{
