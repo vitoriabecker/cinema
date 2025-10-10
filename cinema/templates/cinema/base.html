@@ -72,13 +72,13 @@
         <div id="mobile-menu" class="hidden lg:hidden px-6 pt-6">
           <ul>
             <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0" aria-current="page">página inicial</a>
+              <a href="{% url 'home' %}" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0" aria-current="page">página inicial</a>
             </li>
             <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">sobre</a>
+              <a href="#sobre" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">sobre</a>
             </li>
             <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">curiosidades</a>
+              <a href="#curiosidade" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">curiosidades</a>
             </li>
             <li>
               <a href="{% url 'movie_list' %}" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">filmes</a>
@@ -97,6 +97,8 @@
       </script>
 
     </nav>
+
+    <hr class="max-w-7xl text-neutral-800 mx-4 lg:mx-auto h-px mt-3.5">
   </header>
 
   <main>    
