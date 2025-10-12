@@ -131,6 +131,8 @@ def save_movie(request, id):
 
 def movie_detail(request, id):
   template_name = 'cinema/movie_detail.html'
+
+  # preciso cuidar com isso, sem login n consegue acessar a pagina
   profile = get_object_or_404(Profile, user=request.user.id)
   movie = get_object_or_404(Movie, id=id)
 

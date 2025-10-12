@@ -78,6 +78,12 @@ article{
   font-weight: bold;
 }
 
+/* movie list */
+.filme-titulo {
+  font-family: "Libre Baskerville", serif;
+  color: #cecece;
+}
+
 /* movie detail */
 .filme-info {
   background-color: #202020;

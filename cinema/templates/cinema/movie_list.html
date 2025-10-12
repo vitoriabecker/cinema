@@ -11,12 +11,12 @@
     {% for movie in movies %}
       {% if movie.poster %}
       <div>
-        <div class="relative aspect-[2/3] rounded-b-sm overflow-hidden">
-          <img class="w-full h-full object-cover rounded-b-sm" src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+        <div class="relative aspect-[2/3] overflow-hidden">
+          <img class="w-full h-full rounded-xs object-cover" src="{{ movie.poster.url }}" alt="{{ movie.title }}">
         </div>
         {% endif %}
         <div class="mt-2 text-center">
-          <p><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }} </a>| {{ movie.year }}</p>
+          <p class="filme-titulo text-xs"><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></p>
         </div>
       </div>
     {% endfor %}

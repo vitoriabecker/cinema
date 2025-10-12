@@ -1,28 +1,19 @@
+{% extends 'cinema/base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>movie detail</title>
+{% block content %}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
 
-<body>
-
-  <!-- aqui vem o video -->
-
-  <div class="filme-info">
+<div class="w-full py-16 px-4">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 md:gap-8">
+    <!-- aqui vem o video -->
     <div>
-      <h1>{{ movie.title }}</h1>
-      <p class="desc-2">{{ movie.year }} — {{ movie.length }}</p> 
+      <div class="bg-neutral-800 p-6 rounded-2xl">
+        <h1 class="text-neutral-200 text-2xl font-bold">{{ movie.title }}</h1>
+        <p class="text-neutral-300 text-sm md:text-lg font-light">{{ movie.year }} — {{ movie.length }}</p> 
 
-      <!-- rating form -->
-      <div class="form-avaliar">
-        <form action="{% url 'movie_rate' movie.id %}" class="rating-stars" method="post" url="">
+        <!-- rating form -->
+        <form class="rating-stars text-neutral-700 text-3xl mt-2" action="{% url 'movie_rate' movie.id %}" method="post" url="">
           {% csrf_token %}
           <button type="submit" class="fa fa-star my-btn" id="first" name="score" value="1"></button>
           <button type="submit" class="fa fa-star my-btn" id="second" name="score" value="2"></button>
@@ -30,27 +21,47 @@
           <button type="submit" class="fa fa-star my-btn" id="fourth" name="score" value="4"></button>
           <button type="submit" class="fa fa-star my-btn" id="fifth" name="score" value="5"></button>
         </form> 
+
+        <hr class="text-neutral-700 mx-4 lg:mx-auto h-px m-4">
+
+        <div class="grid grid-cols-2">
+          <div>
+            <p class="text-neutral-300 text-sm md:text-lg font-light">{{ movie.genre }}</p>
+            <p class="text-neutral-300 text-sm md:text-lg font-light">Dirigido por <span class="font-bold">{{ movie.director }}</span></p>
+          </div>
+
+          <div>
+            <!-- save movie | depois vou colocar o icon como button pra save e unsave -->
+            {% if movie in profile.saved_movies.all %}
+              <a href="{% url 'save_movie' movie.id %}">unsave</a>
+            {% else %}
+              <a href="{% url 'save_movie' movie.id %}">save</a>
+            {% endif %}
+          </div>
+        </div>
       </div>
 
-      <p class="desc-3">{{ movie.genre }}</p>
-      <p class="desc-3">Dirigido por {{ movie.director }}</p>
+      <div>
+      {% if request.user.is_superuser %}
+        <div class="editar-filme">
+          <a href="{% url 'update_movie' movie.id %}">Editar filme</a>
+        </div>
 
-      <!-- save movie | depois vou colocar o icon como button pra save e unsave -->
-      {% if movie in profile.saved_movies.all %}
-        <a href="{% url 'save_movie' movie.id %}">unsave</a>
-      {% else %}
-        <a href="{% url 'save_movie' movie.id %}">save</a>
+        <div class="deletar-filme">
+          <a href="{% url 'delete_movie' movie.id %}">Deletar filme</a>
+        </div>
       {% endif %}
+      </div>
     </div>
 
-    <div class="filme-info-2">
-      <h2>Sinopse</h2>
+    <div>
+      <h2 class="text-neutral-400 text-lg md:text-xl font-bold mb-3">Sinopse</h2>
       <p class="desc-1">{{ movie.synopsis }}</p>
     </div>
   </div>
 
   <!-- movie comment -->
-  <div class="comentario">
+  <div class="comentario max-w-7xl mx-auto">
     <div>
 
       <!-- alterar isso depois, nao preciso de uma template só pra comments -->
@@ -72,19 +83,7 @@
       {% endfor %}
     </div>
   </div>
-
-
-  {% if request.user.is_superuser %}
-  <div class="editar-filme">
-    <a href="{% url 'update_movie' movie.id %}">Editar filme</a>
-  </div>
-
-  <div class="deletar-filme">
-    <a href="{% url 'delete_movie' movie.id %}">Deletar filme</a>
-  </div>
-  {% endif %}
-
-</body>
+</div>
 
 
 <!-- script for star rating -->
@@ -146,4 +145,5 @@
     }))
   }
 </script>
-</html>
+
+{% endblock content %}
