@@ -40,7 +40,14 @@ class MovieForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
-    fields = ['text',]
+    fields = ['text']
+
+    widgets = {
+      'text': forms.Textarea(attrs={
+        'class': 'w-full h-28 px-7 py-6 text-sm text-neutral-100 rounded-2xl bg-neutral-900',
+        'placeholder': 'Escreva um comentário...',
+      }),
+    }
 
 class RatingForm(forms.ModelForm):
   class Meta:

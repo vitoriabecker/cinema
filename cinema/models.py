@@ -42,7 +42,7 @@ class Profile(models.Model):
 class Comment(models.Model):
   user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
   movie = models.ForeignKey(Movie, related_name='comments', on_delete=models.CASCADE)
-  text = models.TextField(default='write a comment')
+  text = models.TextField(default='')
   created_date = models.DateTimeField(auto_now_add=True)
 
   class Meta:
