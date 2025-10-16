@@ -72,7 +72,7 @@ body {
 article{
   background-color: #202020;
 }
-.curiosidade h1, .filme-lista h1 {
+.curiosidade h1, .filme-lista h1, .atualizar-filme h1 {
   color: #f2ab27;
   font-weight: 300;
 }
@@ -121,6 +121,13 @@ article{
 .qtd-comentario {
   color: #0d0c0c;
   background-color: #f2ab27;
+}
+
+.botao-filme {
+  background-color: #f2ab27;
+}
+.botao-filme:hover {
+  background-color: #d89820;
 }
 
 /* user profile */

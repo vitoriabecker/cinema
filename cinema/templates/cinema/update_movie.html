@@ -3,27 +3,27 @@
 
 {% block content %}
 
-<div class="atualizar-filme">
-  <div class="container">
-    <div class="atualizar-form">
+<div class="atualizar-filme w-full py-16 px-4 mb-8">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-2xl sm:text-3xl font-bold mb-2">Atualize o filme</h1>
+    <h2 class="text-neutral-300 text-lg sm:text-xl font-light mb-7">{{ movie.title }}</h2>
+  </div>
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-5 md:gap-8">
 
-      <h1>Atualize o filme</h1>
-      
-      <form method="post" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
+    <form class="filme-form" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
 
-        {% for field in form %}
-          {{ field.label_tag }}
-          {{ field }}
-        {% endfor %}
+      {% for field in form %}
+        {{ field.label_tag }}
+        {{ field }}
+      {% endfor %}
 
-        <div class="atualizar-botao">
-          <input type="submit" value="Atualizar filme">
-          <a href="{% url 'movie_detail' movie.id %}">Cancelar</a>
-        </div>
-      </form>
+      <div class="grid lg:grid-cols-2 gap-4 md:gap-7 mt-4">
+        <input class="botao-filme text-neutral-900 text-sm font-bold rounded-lg px-10 py-2 cursor-pointer" type="submit" value="atualizar filme">
+        <a class="text-neutral-300 bg-neutral-900 hover:bg-neutral-800 text-sm text-center font-bold rounded-lg px-10 py-2" href="{% url 'movie_detail' movie.id %}">cancelar</a>
+      </div>
+    </form>
 
-    </div>
   </div>
 </div>
 

@@ -26,15 +26,16 @@ class UpdateProfileForm(forms.ModelForm):
 class MovieForm(forms.ModelForm):
   class Meta:
     model = Movie
-    fields = ['title','year','length','genre','director','synopsis','poster',]
+    fields = ['title', 'poster', 'year','length','genre','director','synopsis',]
     
     widgets = {
-      'title': forms.TextInput(attrs={'class': 'form-control'}),
-      'year': forms.TextInput(attrs={'class': 'form-control'}),
-      'length': forms.TextInput(attrs={'class': 'form-control'}),
-      'genre': forms.TextInput(attrs={'class': 'form-control'}),
-      'director': forms.TextInput(attrs={'class': 'form-control'}),
-      'synopsis': forms.Textarea(attrs={'class': 'form-control'}),
+      'title': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'poster': forms.FileInput(attrs={'class': 'w-full h-10 text-neutral-500 text-sm border border-neutral-700 file:cursor-pointer cursor-pointer file:py-2.5 file:px-3 file:mr-4 file:bg-neutral-700 file:hover:bg-gray-700 file:text-white rounded-lg mb-2'}),
+      'year': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'length': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'genre': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'director': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'synopsis': forms.Textarea(attrs={'class': 'w-full h-28 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
     }
     
 class CommentForm(forms.ModelForm):
