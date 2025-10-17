@@ -8,7 +8,7 @@
     {% csrf_token %}
     <p>Você quer mesmo deletar esse filme?</p>
 
-    <input type="submit" value="Sim">
+    <button type="submit">excluir filme</button>
     <a href="{% url 'movie_detail' movie.id %}">Cancelar</a>
   </form>
 </div>

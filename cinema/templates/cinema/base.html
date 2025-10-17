@@ -6,25 +6,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Home</title>
 
   <!-- font hk grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
   <!-- libre baskerville -->
   <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <link rel="stylesheet" href="{% static 'dist/styles.css' %}">
-
 </head>
 
 <body>
-
   <header>
     <p class="top flex justify-center items-center h-10 text-xs px-5 md:text-sm">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -43,6 +38,22 @@
             <a href="{% url 'signup' %}" class="text-amber-400 bg-neutral-800 hover:bg-neutral-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">Criar conta</a>
           {% endif %}
         </div>
+
+        <!------------------------------>
+         <button type="button" onclick="toggleModal(true)" class="">criar conta</button>
+
+         <dialog id="deleteModal" class="">
+          
+         </dialog>
+
+
+
+
+
+
+
+        <!------------------------------>
+
 
         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -86,18 +97,7 @@
           </ul>
         </div>
       </div>
-            
-      <script>
-        const btn = document.getElementById('menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-          menu.classList.toggle('hidden');
-        });
-      </script>
-
     </nav>
-
     <hr class="max-w-7xl text-neutral-800 mx-4 lg:mx-auto h-px mt-3.5">
   </header>
 
@@ -197,6 +197,18 @@
       </div>
     </div>
   </footer>
+
+
+
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
 </body>
 </html>
 
