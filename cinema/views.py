@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from .forms import MovieForm, UpdateProfileForm, CommentForm, RatingForm
+from .forms import MovieForm, UpdateProfileForm, CommentForm, RatingForm, RegistrationForm
 from .models import Movie, Rating, Profile
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm 
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -15,7 +15,7 @@ def user_signup(request):
   template_name = 'registration/signup.html'
 
   if request.method == 'POST':
-    form = UserCreationForm(request.POST)
+    form = RegistrationForm(request.POST)
 
     if form.is_valid():
       user = form.save()
@@ -24,7 +24,7 @@ def user_signup(request):
       return redirect('home')
     
   else:
-    form = UserCreationForm()
+    form = RegistrationForm()
 
   return render(request, template_name, context={'form':form})
 

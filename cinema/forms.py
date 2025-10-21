@@ -1,12 +1,28 @@
 from django import forms
 from .models import Movie, Profile, Comment, Rating
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 
 
-class SignUpForm(UserCreationForm):
-  class Meta: 
-    fields = ['name','email','password']
-    labels = {'name':'Nome', 'email':'E-mail', 'password':'Senha'} 
+class RegistrationForm(UserCreationForm):
+
+  email = forms.EmailField()
+  first_name = forms.CharField(label="Primeiro nome")
+  last_name = forms.CharField(label="Sobrenome")
+
+  class Meta:
+    model = User
+    fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+
+    ## Por algum motivo o field usuario é o unico renderizando certo, verificar isso amanha
+    widgets = {
+      'first_name': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'last_name': forms.Textarea(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'username': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'email': forms.EmailInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'password1': forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+      'password2':forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
+    }
 
 
 class LoginForm(AuthenticationForm):

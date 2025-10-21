@@ -9,7 +9,6 @@
     <h2 class="text-neutral-300 text-lg sm:text-xl font-light mb-7">{{ movie.title }}</h2>
   </div>
   <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-5 md:gap-8">
-
     <form class="filme-form" method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
 
@@ -23,7 +22,6 @@
         <a class="text-neutral-300 bg-neutral-900 hover:bg-neutral-800 text-sm text-center font-bold rounded-lg px-10 py-2" href="{% url 'movie_detail' movie.id %}">cancelar</a>
       </div>
     </form>
-
   </div>
 </div>
 

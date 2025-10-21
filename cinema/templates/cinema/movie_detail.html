@@ -42,8 +42,8 @@
 
       <div class="botao-detalhe flex gap-4 mt-6">
         {% if request.user.is_superuser %}
-        <a class="text-center text-neutral-400 bg-neutral-900 border border-neutral-400 hover:text-neutral-50 hover:border-neutral-50 font-medium rounded-xl text-sm py-2 px-10" href="{% url 'update_movie' movie.id %}">editar filme</a>
-        <button type="button" onclick="toggleModal(true)" class="text-center text-neutral-400 bg-neutral-900 border border-neutral-400 hover:text-neutral-50 hover:border-neutral-50 font-medium rounded-xl text-sm py-2 px-10 cursor-pointer">deletar filme</button>
+        <a class="text-center text-neutral-400 border border-neutral-400 hover:text-neutral-50 hover:border-neutral-50 font-medium rounded-xl text-sm py-2 px-10" href="{% url 'update_movie' movie.id %}">editar filme</a>
+        <button type="button" onclick="toggleModal(true)" class="text-center text-neutral-400 border border-neutral-400 hover:text-neutral-50 hover:border-neutral-50 font-medium rounded-xl text-sm py-2 px-10 cursor-pointer">deletar filme</button>
 
         <!-- como o delete está aqui agora, preciso arrumar a view depois para apontar pra cá -->
         <dialog id="deleteModal" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
