@@ -1,38 +1,42 @@
 {% extends 'cinema/base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="max-w-7xl mx-auto py-16 px-4 lg:px-0 grid md:grid-cols-2 gap-5 md:gap-8">
 
-<div class="w-full py-16 px-4">
-  <div class="max-w-7xl mx-auto bg-neutral-900 rounded-2xl py-10 px-10"> <!-- opacity-->
+  <div class="bg-neutral-900 rounded-2xl py-13 px-13"> <!-- opacity-->
     <div>
-      <h3>Crie uma conta</h3>
-      <p class="desc">Assista, comente e favorite filmes nacionais</p>  
+      <h3 class="text-2xl md:text-3xl font-bold text-amber-400 mb-1">Crie uma conta</h3>
+      <p class="desc-1 text-sm">Assista, comente e favorite filmes nacionais</p>  
     </div>
 
-    <div class="flex">
-      <form method="post">
-        {% csrf_token %}
+    <hr class="w-full text-neutral-800 mx-4 lg:mx-auto h-px m-5">
 
-        {% for field in form %}
-        <div>
-          <label class="block text-sm font-medium text-gray-200 mb-1">
-            {{ field.label }}
-          </label>
-          {{ field }}
-          {% if field.errors %}
-          <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
-          {% endif %}
-        </div>
-        {% endfor %}
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div>
+        <label class="block text-sm font-medium text-neutral-200 mt- mb-1.5">
+          {{ field.label }}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+        <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
 
-        <button>criar conta</button>
-      </form>
-    </div>
-    
+      <button class="botao-filme text-neutral-900 w-full text-sm font-bold rounded-lg py-2.5 cursor-pointer mt-4">criar conta</button>
+    </form>
+
     <div>
-      <p class="text-lg font-light font-libre text-neutral-600">Já possui uma conta? <a href="{% url 'login' %}">Entre</a></p>
+      <p class="text-sm font-light text-neutral-300 text-center mt-3">Já possui uma conta? <a class="text-amber-400" href="{% url 'login' %}">Entre</a></p>
     </div>
   </div>
-</div>
 
+  <div>
+    <img src="{% static 'images/gif.gif' %}" class="w-full h-full object-cover rounded-2xl" alt="">
+  </div>
+
+</div>
 {% endblock content %}

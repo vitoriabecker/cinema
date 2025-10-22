@@ -6,24 +6,34 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 class RegistrationForm(UserCreationForm):
 
-  email = forms.EmailField()
-  first_name = forms.CharField(label="Primeiro nome")
-  last_name = forms.CharField(label="Sobrenome")
+  first_name = forms.CharField(
+    label='Primeiro nome',
+    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Primeiro nome'}))
 
+  last_name = forms.CharField(
+    label='Sobrenome',
+    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Sobrenome'}))
+
+  username = forms.CharField(
+    label='Usuário',
+    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Usuário'}))
+
+  email = forms.EmailField(
+    label='E-mail',
+    widget=forms.EmailInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Email'}))
+
+  password1 = forms.CharField(
+    label='Senha',
+    widget=forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
+  
+  password2 = forms.CharField(
+    label='Confirme sua senha',
+    widget=forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
+  
   class Meta:
     model = User
     fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-
-    ## Por algum motivo o field usuario é o unico renderizando certo, verificar isso amanha
-    widgets = {
-      'first_name': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-      'last_name': forms.Textarea(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-      'username': forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-      'email': forms.EmailInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-      'password1': forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-      'password2':forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2'}),
-    }
-
+    
 
 class LoginForm(AuthenticationForm):
   username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True}))
