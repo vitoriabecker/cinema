@@ -40,10 +40,8 @@ body {
   color: #f2ab27;
   font-weight: bold;
 }
-.nav-bar a{
-  text-decoration: none;
-  color: #a6a6a6;
-  font-weight: 300;
+.nav-bar a:hover {
+  color: #f2ab27;
 }
 .desc-1 {
   font-family: "Libre Baskerville", serif;
@@ -128,6 +126,11 @@ article{
 }
 .botao-filme:hover {
   background-color: #d89820;
+}
+
+/* signup/login */
+.register h3, .register a{
+  color: #f2ab27;
 }
 
 /* user profile */

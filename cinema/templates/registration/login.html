@@ -1,24 +1,53 @@
 {% extends 'cinema/base.html' %}
+{% load static %}
 
 {% block content %}
 
-  <!-- na realidade, eu vou usar um block content aqui, mas enfim, faço isso depois -->
-  <form action="{% url 'login' %}" method="post">
+<div class="register max-w-7xl mx-auto py-16 px-4 lg:px-0 grid md:grid-cols-2 gap-5 md:gap-8">
+  <div class="bg-neutral-900 rounded-2xl p-10">
+    <div>
+      <h3 class="text-2xl md:text-3xl font-bold mb-5">Entre em sua conta</h3>
+    </div>
+    
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      
+      <div>
+        <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-neutral-200 mt- mb-1.5">
+          {{ form.username.label }}
+        </label>
+        
+        <input type="text" name="{{ form.username.name }}" value="{{ form.username.value|default:'' }}" placeholder="Usuário"
+        class="w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600 bg-neutral-900 focus:outline-none focus:border-neutral-400"
+        required autofocus>
 
-    <h3>Entre em sua conta</h3>
+        <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-neutral-200 mt- mb-1.5">
+          {{ form.password.label }}
+        </label>
+        
+        <input type="text" name="{{ form.password.name }}" value="{{ form.password.value|default:'' }}" placeholder="Senha"
+        class="w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600 bg-neutral-900 focus:outline-none focus:border-neutral-400"
+        required autofocus>
 
-    {% csrf_token %}
-    <p>{{ form.username.label_tag }}
-    {{ form.username }}</p>
+        {% if field.errors %}
+        <p class="text-red-500 text-sm mt-1">{{ field.errors|striptags }}</p>
+        {% endif %}
+      </div>
 
-    </p>{{ form.password.label_tag }}
-    {{ form.password }}</p>
+      <button type="submit" class="botao-filme text-neutral-900 w-full text-sm font-bold rounded-lg py-2.5 cursor-pointer mt-4">entrar</button>        
+    </form>
 
-    <input type="submit" value="entrar">
+    <div>
+      <p class="text-sm font-light text-neutral-300 text-center mt-5">Ainda não tem uma conta? <a href="">Registre-se</a></p>
+    </div>
+  </div>
 
-  </form>
+  <div class="hidden">
+    <h1>AAAAAAAAAAA</h1>
+  </div>
+</div>
   
-  <p class="text-lg font-light font-libre text-neutral-600">Ainda não possui uma conta? <a href="{% url 'signup' %}">Criar conta</a></p>
+
 
   {% if messages %}
     {% for message in messages %}

@@ -24,7 +24,7 @@
     <p class="top flex justify-center items-center h-10 text-xs px-5 md:text-sm">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </p>
-    <nav class="px-4 lg:px-6 py-6">
+    <nav class="nav-bar px-4 lg:px-6 py-6">
       <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         <a href="#" class="flex items-center">
           <span class="logo text-2xl md:text-4xl flex items-center uppercase">vivi|filmes</span>
@@ -42,16 +42,16 @@
         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li>
-              <a href="{% url 'home' %}" class="block py-2 pr-4 pl-3 text-neutral-500 hover:text-amber-400 rounded bg-primary-700 lg:p-0" aria-current="page">página inicial</a>
+              <a href="{% url 'home' %}" class="block text-neutral-500 font-medium py-2 pr-4 pl-3 lg:p-0" aria-current="page">página inicial</a>
             </li>
             <li>
-              <a href="#sobre" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-amber-400 lg:border-0 lg:p-0">sobre</a>
+              <a href="#sobre" class="block text-neutral-500 font-medium py-2 pr-4 pl-3 lg:p-0">sobre</a>
             </li>
             <li>
-              <a href="#curiosidade" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-amber-400 lg:border-0 lg:p-0">curiosidades</a>
+              <a href="#curiosidade" class="block text-neutral-500 font-medium py-2 pr-4 pl-3 lg:p-0">curiosidades</a>
             </li>
             <li>
-              <a href="{% url 'movie_list' %}" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-amber-400 lg:border-0 lg:p-0">filmes</a>
+              <a href="{% url 'movie_list' %}" class="block text-neutral-500 font-medium py-2 pr-4 pl-3 lg:p-0">filmes</a>
             </li>
           </ul>
         </div>
@@ -67,16 +67,16 @@
         <div id="mobile-menu" class="hidden lg:hidden px-6 pt-6">
           <ul>
             <li>
-              <a href="{% url 'home' %}" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0" aria-current="page">página inicial</a>
+              <a href="{% url 'home' %}" class="block py-2 pr-4 pl-3 text-neutral-500 lg:p-0" aria-current="page">página inicial</a>
             </li>
             <li>
-              <a href="#sobre" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">sobre</a>
+              <a href="#sobre" class="block py-2 pr-4 pl-3 text-neutral-500 lg:p-0">sobre</a>
             </li>
             <li>
-              <a href="#curiosidade" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">curiosidades</a>
+              <a href="#curiosidade" class="block py-2 pr-4 pl-3 text-neutral-500 lg:p-0">curiosidades</a>
             </li>
             <li>
-              <a href="{% url 'movie_list' %}" class="block py-2 pr-4 pl-3 text-neutral-500 border-b hover:text-neutral-400 lg:border-0 lg:p-0">filmes</a>
+              <a href="{% url 'movie_list' %}" class="block py-2 pr-4 pl-3 text-neutral-500 lg:p-0">filmes</a>
             </li>
           </ul>
         </div>
@@ -191,6 +191,17 @@
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
+
+
+    const modal = document.getElementById('loginModal');
+    function toggleModal(show) {
+      if(show) {
+        modal.showModal();
+      } else {
+        modal.close();
+      }
+    }
+
   </script>
 
 </body>

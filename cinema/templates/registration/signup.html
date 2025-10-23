@@ -2,17 +2,14 @@
 {% load static %}
 
 {% block content %}
-<div class="max-w-7xl mx-auto py-16 px-4 lg:px-0 grid md:grid-cols-2 gap-5 md:gap-8">
-
-  <div class="bg-neutral-900 rounded-2xl py-13 px-13"> <!-- opacity-->
+<div class="register max-w-7xl mx-auto pt-16 pb-26 px-4 lg:px-0 grid md:grid-cols-2 gap-5 md:gap-8">
+  <div class="bg-neutral-900 rounded-2xl p-10"> <!-- opacity-->
     <div>
-      <h3 class="text-2xl md:text-3xl font-bold text-amber-400 mb-1">Crie uma conta</h3>
+      <h3 class="text-2xl md:text-3xl font-bold mb-1">Crie uma conta</h3>
       <p class="desc-1 text-sm">Assista, comente e favorite filmes nacionais</p>  
     </div>
-
     <hr class="w-full text-neutral-800 mx-4 lg:mx-auto h-px m-5">
-
-    <form method="post">
+    <form method="post" action="{% url 'signup' %}">
       {% csrf_token %}
       {% for field in form %}
       <div>
@@ -25,18 +22,15 @@
         {% endif %}
       </div>
       {% endfor %}
-
-      <button class="botao-filme text-neutral-900 w-full text-sm font-bold rounded-lg py-2.5 cursor-pointer mt-4">criar conta</button>
+      <button type="submit" class="botao-filme text-neutral-900 w-full text-sm font-bold rounded-lg py-2.5 cursor-pointer mt-4">criar conta</button>
     </form>
-
     <div>
-      <p class="text-sm font-light text-neutral-300 text-center mt-3">Já possui uma conta? <a class="text-amber-400" href="{% url 'login' %}">Entre</a></p>
+      <p class="text-sm font-light text-neutral-300 text-center mt-5">Já possui uma conta? <a href="{% url 'login' %}">Entre</a></p>
     </div>
   </div>
 
   <div>
-    <img src="{% static 'images/gif.gif' %}" class="w-full h-full object-cover rounded-2xl" alt="">
+  <!--<img src="{% static 'images/gif.gif' %}" class="w-full h-full object-cover rounded-2xl" alt="">-->
   </div>
-
 </div>
 {% endblock content %}

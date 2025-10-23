@@ -8,32 +8,32 @@ class RegistrationForm(UserCreationForm):
 
   first_name = forms.CharField(
     label='Primeiro nome',
-    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Primeiro nome'}))
+    widget=forms.TextInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Primeiro nome'}))
 
   last_name = forms.CharField(
     label='Sobrenome',
-    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Sobrenome'}))
+    widget=forms.TextInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Sobrenome'}))
 
   username = forms.CharField(
     label='Usuário',
-    widget=forms.TextInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Usuário'}))
+    widget=forms.TextInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Usuário'}))
 
   email = forms.EmailField(
     label='E-mail',
-    widget=forms.EmailInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Email'}))
+    widget=forms.EmailInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Email'}))
 
   password1 = forms.CharField(
     label='Senha',
-    widget=forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
+    widget=forms.PasswordInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
   
   password2 = forms.CharField(
     label='Confirme sua senha',
-    widget=forms.PasswordInput(attrs={'class': 'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
+    widget=forms.PasswordInput(attrs={'class':'w-full h-10 px-3 py-2 text-sm text-neutral-100 border border-neutral-700 rounded-lg mb-2 placeholder:text-xs placeholder:text-neutral-600','placeholder': 'Senha'}))
   
   class Meta:
     model = User
     fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-    
+
 
 class LoginForm(AuthenticationForm):
   username = UsernameField(widget=forms.TextInput(attrs={'autofocus':True}))
