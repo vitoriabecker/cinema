@@ -2,50 +2,72 @@
 {% load static %}
 
 {% block content %}
-
-  <h3>user profile</h3>
-
   <form method="post" enctype="multipart/form-data">
+
+
+
     {% csrf_token %}
 
-    <div class="perfil-info">
-      <!-- foto de capa também -->
-      <img src="{{ profile.avatar.url }}" alt="avatar">
+    <div class="w-full py-16 px-4">
+      <div class="perfil-info max-w-7xl mx-auto">
+        <div>
+          <img class="w-full h-56 object-cover overflow-hidden" src="{% static 'images/crash.jpg' %}" alt="filme">
+        </div>
+        <div class="perfil-img-nome">
+          <img src="{{ profile.avatar.url }}" alt="avatar">
+        </div>
+      </div>
 
-      <p id="usuario">{{ user.username }}</p>
-      <span>{{ saved_movies.count }}</span>
-      <p id="qtd-filmes">filmes</p>
+      <div class="max-w-7xl mx-auto grid md:gap-8 lg:grid-cols-2">
+        <div class="coluna-esquerda">
+          <h2 class="text-neutral-300 text-2xl font-bold">{{ user.username }}</h2>
+          <span class="text-neutral-200 text-lg font-bold">{{ saved_movies.count }}</span>
+          <p class="text-neutral-400 text-sm font-light">FILMES</p>
 
-      <p class="desc-1">{{ profile.bio }}</p>
+          <p class="desc-1">{{ profile.bio }}</p>
 
-      <button>Editar perfil</button>
+          <!-- onde vai esse button? dentro de outra template -->
+          <button type="button" class="text-center text-neutral-500 border border-neutral-500 hover:text-neutral-50 hover:border-neutral-50 font-medium rounded-lg text-sm py-1.5 px-20 cursor-pointer">editar perfil</button>
+        </div>
+
+        <!-- isso precisa de outra template, igual ao de perfil, mas que possibilita edição
+        <div class="editar-perfil">
+          <a href="{% url 'change_password' %}">Alterar senha</a>
+          <hr>
+
+          <label>Alterar foto</label>
+          {{ profile_form.avatar }}
+          <br>
+
+          <label>Descrição</label>
+          {{ profile_form.bio }}
+
+          <button type="submit">Salvar</button>
+        </div> -->
+
+        <div class="coluna-direita">
+          <p id="fav-filmes" class="text-neutral-200 text-xs mb-1">FILMES FAVORITOS</p>
+          <hr class="text-neutral-700 lg:mx-auto h-px mb-3.5">
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          {% for movie in saved_movies %}
+            <div>  
+              <div class="relative aspect-[2/3] overflow-hidden">
+                <a href="{% url 'movie_detail' movie.id %}"><img class="w-full h-full rounded-xs object-cover" src="{{ movie.poster.url }}" alt="{{ movie.title }}"></a>
+              </div>          
+              <div class="mt-2 text-center">
+                <p class="filme-titulo text-xs"><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></p>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="editar-perfil">
-      <!-- isso precisa de outra template, igual ao de perfil, mas que possibilita edição -->
-      <a href="{% url 'change_password' %}">Alterar senha</a>
-      <hr>
 
-      <label>Alterar foto</label>
-      {{ profile_form.avatar }}
-      <br>
 
-      <label>Descrição</label>
-      {{ profile_form.bio }}
-
-      <button type="submit">Salvar</button>
-    </div>
   </form>
-
-  <div>
-    <p id="fav-filmes">Filmes favoritos</p>
-    <hr>
-
-    {% for movie in saved_movies %}
-      {{ movie.poster }}
-      <p class="filme-titulo"><a href="{% url 'movie_detail' id=movie.id %}">{{ movie.title }}</a></p>
-      <p class="filme-ano">{{ movie.year }}</p>
-    {% endfor %}
-  </div>
 
 {% endblock content %}

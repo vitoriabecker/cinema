@@ -1,4 +1,5 @@
 {% extends 'cinema/base.html' %}
+{% load static %}
 
 {% block content %}
   
@@ -6,7 +7,7 @@
 
   <div class="max-w-7xl mx-auto grid md:gap-8 lg:grid-cols-2">
     <div>
-      <img class="w-full mx-auto md:mx-0 my-4" src="static/images/rio-40-graus-02.webp" alt="filme">
+      <img class="w-full mx-auto md:mx-0 my-4" src="{% static 'images/rio-40-graus-02.webp' %}" alt="filme">  
     </div>
 
     <div class="flex flex-col justify-center">
@@ -44,7 +45,7 @@
     </div>
 
     <div>
-      <img class="w-full h-54 object-cover overflow-hidden" src="static/images/apenasofim.jpg" alt="filme">
+      <img class="w-full h-54 object-cover overflow-hidden" src="{% static 'images/apenasofim.jpg' %}" alt="filme"> 
 
       <p class="desc-1 mt-8">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum quas facilis voluptate sed quaerat ratione beatae consequuntur 
@@ -88,7 +89,7 @@
     </div>
 
     <div>
-      <img src="static/images/cbs_id_terra_estrangeira.jpg" alt="filme">
+      <img src="{% static 'images/cbs_id_terra_estrangeira.jpg' %}" alt="filme"> 
       <p class="desc-1 mt-5">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Error maiores sint minima harum consequatur, excepturi aspernatur 
         incidunt suscipit, dicta facere quia, vitae voluptates doloremque debitis sequi placeat libero. Atque, sint. Lorem ipsum dolor
