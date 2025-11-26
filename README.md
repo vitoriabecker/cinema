@@ -12,11 +12,13 @@ A film streaming blog that allows users to create an account, rate, comment and 
 ### Prerequisites:
 ```bash
 pip install django
+```
 
 ### How to run:
 **1.** Clone the repository:
 ```bash
 git clone https://github.com/vitoriabecker/cinema.git
+```
 
 ### How it looks like:
 
