@@ -1,5 +1,5 @@
 ## Cinema 
-A film streaming blog that allows users to create an account, rate, comment and save movies. 
+A film streaming blog that allows users to create an account, watch, rate, comment and save movies. 
 
 ### Built with:
 - HTML
