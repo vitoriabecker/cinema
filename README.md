@@ -30,7 +30,7 @@ python manage.py runserver
 ```
 
 ### How it looks like:
-<img src="https://github.com/user-attachments/assets/6807354e-bb46-4226-9662-bf451ebf3293" width="700">
+<img src="https://github.com/user-attachments/assets/6807354e-bb46-4226-9662-bf451ebf3293">
 
 ### Author
 **Vitória Müller Becker**\
