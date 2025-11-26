@@ -10,6 +10,7 @@ A film streaming blog that allows users to create an account, rate, comment and 
 - Django
 
 ### Prerequisites:
+- Install **Django**
 ```bash
 pip install django
 ```
@@ -18,6 +19,14 @@ pip install django
 **1.** Clone the repository:
 ```bash
 git clone https://github.com/vitoriabecker/cinema.git
+```
+**2.** Go to project folder:
+```bash
+cd cinema
+```
+**3.** Run the development server:
+```bash
+python manage.py runserver
 ```
 
 ### How it looks like:
